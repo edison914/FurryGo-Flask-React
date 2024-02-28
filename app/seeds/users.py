@@ -60,6 +60,10 @@ def seed_users():
         profile_url="https://images.pexels.com/photos/1972531/pexels-photo-1972531.jpeg?auto=compress&cs=tinysrgb&w=600",
     )
 
+    db.session.add(demo)
+    db.session.add(eddie)
+    db.session.add(lucy)
+
     for user in users:
         addtional_user = User(
             nickname=user["nickname"],
@@ -69,9 +73,6 @@ def seed_users():
         )
         db.session.add(addtional_user)
 
-    db.session.add(demo)
-    db.session.add(eddie)
-    db.session.add(lucy)
     db.session.commit()
 
 
