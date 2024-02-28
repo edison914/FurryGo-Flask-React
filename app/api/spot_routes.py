@@ -1,7 +1,7 @@
 from flask import Blueprint, redirect, request, jsonify
 from flask_login import login_required, current_user
 from app.models import Spot, Spot_Image, Comment, db
-from ..forms import NewSpotForm, EditSpotForm
+from ..forms import NewSpotForm, EditSpotForm, NewCommentForm
 from app.api.aws_helpers import (
     upload_file_to_s3,
     get_unique_filename,
@@ -24,7 +24,7 @@ def all_spots():
 @login_required
 def all_spots_by_current_user():
     """
-    Query for all spots created by current user and returns them in a list of song dictionaries
+    Query for all spots created by current user and returns them in a list of spots dictionaries
     """
     all_spots = Spot.query.filter(Spot.user_id == current_user.id)
 
@@ -92,7 +92,6 @@ def create_a_spot():
         db.session.commit()
 
         new_spot_image1 = Spot_Image(spot_id=new_spot.id, image_url=image1_url)
-
         new_spot_image2 = Spot_Image(spot_id=new_spot.id, image_url=image2_url)
 
         db.session.add(new_spot_image1)
@@ -170,13 +169,13 @@ def update_spot(id):
     return form.errors, 401
 
 
-@spot_routes.route("/<int:id>", methods=["DELETE"])
+@spot_routes.route("/<int:spot_id>", methods=["DELETE"])
 @login_required
-def delete_spot(id):
+def delete_spot(spot_id):
     """
     Delete spot if owned by current user
     """
-    spot = Spot.query.get(id)
+    spot = Spot.query.get(spot_id)
 
     if not spot:
         return {"error": "Spot not found"}, 404
@@ -189,47 +188,62 @@ def delete_spot(id):
     print("spotImage", image1_url)
     print("spotImage", image2_url)
 
-    if "amazonaws" in image1_url or "amazonaws" in image2_url :
+    if "amazonaws" in image1_url or "amazonaws" in image2_url:
         remove_file_from_s3(image1_url)
         remove_file_from_s3(image2_url)
 
-
     db.session.delete(spot)
     db.session.commit()
-    return {'message':'succcessfully deleted'}
+    return {"message": "succcessfully deleted"}
 
 
-@spot_routes.route('/<int:id>/comments', methods=['GET'])
-def get_comments_for_spot(id):
+@spot_routes.route("/<int:spot_id>/comments", methods=["GET"])
+def get_comments_for_spot(spot_id):
     """
     Query for all comments based on the spot Id and returns the comments in a list
     """
-    all_comments = Comment.query.filter_by(spot_id=id).order_by(Comment.updated_at).all()
-
+    all_comments = (
+        Comment.query.filter_by(spot_id=spot_id).order_by(Comment.updated_at).all()
+    )
+    print(all_comments)
     if not all_comments:
-        return {'comments': []}
+        return {"comments": []}
 
-    return {'comments': [comment.to_dict() for comment in all_comments]}
+    return {"comments": [comment.to_dict() for comment in all_comments]}
 
-#Eddie Add a comment to a song
-@spot_routes.route('/<int:id>/comments', methods=['POST'])
+
+@spot_routes.route("/<int:spot_id>/comments", methods=["POST"])
 @login_required
-def add_comments_for_song(id):
+def add_comments_for_spot(spot_id):
     """
     add a comment based on the spot Id and user Id
     """
 
     form = NewCommentForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
-    # if form.validate_on_submit():
-    #     new_comment = Comment(
-    #         comment_text=form.data['comment_text'],
-    #         user_id=current_user.id,
-    #         song_id=song_id
-    #     )
-    #     db.session.add(new_comment)
-    #     db.session.commit()
-    #     return new_comment.to_dict()
+    if form.validate_on_submit():
+        data = form.data
 
-    # return form.errors, 401
+        image1 = data["image_url"]
+        image1.filename = get_unique_filename(image1.filename)
+        upload_image1 = upload_file_to_s3(image1)
+
+        if "url" not in upload_image1:
+            return {"error": "Upload was unsuccessful"}
+
+        image1_url = upload_image1("url")
+
+        new_comment = Comment(
+            comment_text=form.data["comment_text"],
+            # image_url=form.data['image_url'],
+            image_url=image1_url,
+            user_id=current_user.id,
+            spot_id=spot_id,
+        )
+
+        db.session.add(new_comment)
+        db.session.commit()
+        return new_comment.to_dict()
+
+    return form.errors, 401

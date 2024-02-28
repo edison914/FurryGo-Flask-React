@@ -15,7 +15,7 @@ class NewCommentForm(FlaskForm):
 
     comment_text = TextAreaField('Comment', validators=[DataRequired(), Length(max=255), no_white_space])
 
-    comment_url = FileField(
+    image_url = FileField(
         "Image URL1",
         validators=[
             FileAllowed(
