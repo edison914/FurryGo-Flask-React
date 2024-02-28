@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileField, FileAllowed, FileRequired
-from wtforms import StringField, TextAreaField, SelectField, IntegerField, DecimalField, URLField, TelField
+from wtforms import StringField, TextAreaField, IntegerField, DecimalField, URLField
 from wtforms.validators import DataRequired, Length, AnyOf, ValidationError
 from app.api.aws_helpers import ALLOWED_IMAGE_EXTENSIONS
 
@@ -15,16 +15,26 @@ category = [
     "shops",
 ]
 
+
 class EditSpotForm(FlaskForm):
+
     def no_white_space(FlaskForm, field):
         if field.data and field.data.startswith(" "):
             raise ValidationError("Content should not start with whitespace.")
         if field.data and field.data.endswith(" "):
             raise ValidationError("Content should not end with whitespace.")
 
+    def check_phone_digits(FlaskForm, field):
+        if field.data and len(str(field.data)) != 10:
+            raise ValidationError("Phone number must be 10 digits only.")
+
     category = StringField(
         "Category",
-        validators=[DataRequired(), AnyOf(category, message="Select a category")],
+        validators=[
+            DataRequired(),
+            AnyOf(category, message="Select a category"),
+            no_white_space,
+        ],
     )
 
     address = StringField(
@@ -54,14 +64,29 @@ class EditSpotForm(FlaskForm):
         ],
     )
 
-    zip_code = IntegerField("Zip Code", validators=[DataRequired(), no_white_space])
+    zip_code = IntegerField(
+        "Zip Code",
+        validators=[
+            DataRequired(),
+        ],
+    )
 
     lat = DecimalField(
-        "Lat", places=5, rounding=None, validators=[DataRequired(), no_white_space]
+        "Lat",
+        places=5,
+        rounding=None,
+        validators=[
+            DataRequired(),
+        ],
     )
 
     lng = DecimalField(
-        "Lng", places=5, rounding=None, validators=[DataRequired(), no_white_space]
+        "Lng",
+        places=5,
+        rounding=None,
+        validators=[
+            DataRequired(),
+        ],
     )
 
     name = StringField(
@@ -77,7 +102,9 @@ class EditSpotForm(FlaskForm):
         "Description",
         validators=[
             DataRequired(),
-            Length(max=5000, message="Description cannot be longer than 5000 characters"),
+            Length(
+                max=5000, message="Description cannot be longer than 5000 characters"
+            ),
             no_white_space,
         ],
     )
@@ -85,20 +112,12 @@ class EditSpotForm(FlaskForm):
     website = URLField(
         "website",
         validators=[
-            DataRequired(),
             Length(max=200, message="website url cannot be longer than 200 characters"),
             no_white_space,
         ],
     )
 
-    phone_number = IntegerField(
-        "Phone number",
-        validators=[
-            DataRequired(),
-            Length(min=10, max=10, message="Phone number must be 10 digits only"),
-            no_white_space,
-        ],
-    )
+    phone_number = IntegerField("Phone number", validators=[check_phone_digits])
 
     image_url1 = FileField(
         "Image URL1",
