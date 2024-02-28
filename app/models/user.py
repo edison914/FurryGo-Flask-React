@@ -13,7 +13,7 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     nickname = db.Column(db.String(40), nullable=False)
-    profile_url = db.Column(db.String(255), nullable=False)
+    # profile_url = db.Column(db.String(255), nullable=False)
 
     #a user can have many spots
     spots = db.relationship('Spot', back_populates='user', cascade='all, delete')
@@ -45,5 +45,5 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'email': self.email,
             'nickname': self.nickname,
-            'profile_url': self.profile_url
+            # 'profile_url': self.profile_url
         }

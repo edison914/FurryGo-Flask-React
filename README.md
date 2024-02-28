@@ -1,1 +1,1 @@
-![FurryGo](https://github.com/edison914/furrygo/assets/101605994/c666970f-79f0-4ba4-9f1e-dac76e686962)
+![FurryGo (1)](https://github.com/edison914/furrygo/assets/101605994/0eae4ea5-e872-46ae-ae20-74fe9fa48f98)
