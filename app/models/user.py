@@ -12,8 +12,22 @@ class User(db.Model, UserMixin):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
-    nickname = db.Column(db.String(40), nullable=False, unique=True)
-    profile_image = db.Column(db.String(255), nullable=False)
+    nickname = db.Column(db.String(40), nullable=False)
+    profile_url = db.Column(db.String(255), nullable=False)
+
+    #a user can have many spots
+    spots = db.relationship('Spot', back_populates='user', cascade='all, delete')
+
+    #a user can have many comments
+    comments = db.relationship('Comment', back_populates='user', cascade='all, delete')
+
+    #a user can have many ratings
+    ratings = db.relationship(
+        "Rating", back_populates="user", cascade="all, delete"
+    )
+
+    #a user can have many bookmarks
+    bookmarks = db.relationship("Bookmark", back_populates="user", cascade='all, delete')
 
     @property
     def password(self):
@@ -31,5 +45,5 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'email': self.email,
             'nickname': self.nickname,
-            'profileImage': self.profile_image
+            'profile_url': self.profile_url
         }
