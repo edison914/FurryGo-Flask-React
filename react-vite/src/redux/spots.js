@@ -2,7 +2,7 @@
 const LOAD_SPOTS = "spots/LOAD_SPOTS";
 const LOAD_CURRENT_USER_SPOTS = "spots/LOAD_CURRENT_USER_SPOTS";
 const REMOVE_SPOT = "spots/REMOVE_SPOT";
-
+const CREATE_SPOT = "spots/CREATE_SPOT";
 
 //action creator to handle actions
 const loadSpots = (spots) => {
@@ -12,10 +12,10 @@ const loadSpots = (spots) => {
   };
 };
 
-const loadCurrentUserSpots = (spots) => {
+const createSpot = (spot) => {
   return {
-    type: LOAD_CURRENT_USER_SPOTS,
-    payload: spots,
+    type: CREATE_SPOT,
+    payload: spot,
   };
 };
 
@@ -33,7 +33,7 @@ export const getSpotsThunk = () => async (dispatch) => {
 
     if (res.ok) {
       const data = await res.json();
-      console.log(data)
+      console.log(data);
       dispatch(loadSpots(data.spots));
       return data;
     }
@@ -44,21 +44,64 @@ export const getSpotsThunk = () => async (dispatch) => {
   }
 };
 
+//thunk action to find spots of current User.
+export const getCurrentUserSpotsThunk = () => async (dispatch) => {
+  try {
+    const res = await fetch("/api/spots/current");
+
+    if (res.ok) {
+      const data = await res.json();
+      console.log(data);
+      dispatch(loadSpots(data.spots));
+      return data;
+    }
+    throw res;
+  } catch (e) {
+    const data = await e.json();
+    return data;
+  }
+};
+
+//thunk action to find all spots.
+export const createSpotThunk = (spot) => async (dispatch) => {
+  try {
+    const res = await fetch("/api/spots", {
+      method: "POST",
+      body: spot,
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      // console.log(data);
+      dispatch(createSpot(data));
+      return data;
+    }
+    throw res;
+  } catch (e) {
+    const data = await e.json();
+    return data;
+  }
+};
+
 //initial normalized state
-const initialState = { allSpots: [], byId:[]};
+const initialState = { allSpots: [], byId: [] };
 
 const spotReducers = (state = initialState, action) => {
-  let newState = {...state};
-  switch(action.type) {
+  let newState = { ...state };
+  switch (action.type) {
     case LOAD_SPOTS:
       newState.allSpots = action.payload;
-      action.payload.forEach((spot) => {
-          newState.byId[spot.id] = spot;
-      })
-    return newState;
+      action.payload.forEach((spot) => (newState.byId[spot.id] = spot));
+      return newState;
+      
+    case CREATE_SPOT:
+      newState.allSpots.push(action.payload);
+      newState.byId[action.payload.id] = action.payload;
+      return newState;
+
     default:
       return state;
   }
-}
+};
 
-export default spotReducers
+export default spotReducers;

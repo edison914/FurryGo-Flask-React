@@ -7,12 +7,12 @@ from app.api.aws_helpers import ALLOWED_IMAGE_EXTENSIONS
 extension_joined = ", ".join(ALLOWED_IMAGE_EXTENSIONS)
 
 category = [
-    "restaurants",
-    "cafes",
-    "parks",
-    "events",
-    "hotels",
-    "shops",
+    "Restaurants",
+    "Cafes",
+    "Parks",
+    "Events",
+    "Hotels",
+    "Shops",
 ]
 
 

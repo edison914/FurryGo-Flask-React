@@ -1,1 +1,14 @@
 /* TODO: Add sitewide styles */
+.formContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.SpotsContainer {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.SpotsContainerDiv {
+    margin: 10px;
+}

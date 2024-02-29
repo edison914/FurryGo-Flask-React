@@ -1,5 +1,5 @@
 import { NavLink } from 'react-router-dom'
-
+import "./SpotSimpleView.css"
 const SpotSimpleView = (spot) => {
 
     const currentSpot = spot.spot

@@ -1,0 +1,10 @@
+.currentUserSpotContainer {
+    display:flex;
+    flex-direction: row;
+    align-items: center;
+
+}
+
+.currentUserSpotContainer img {
+    width: 200px;
+}

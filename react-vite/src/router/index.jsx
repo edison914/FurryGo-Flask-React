@@ -3,6 +3,7 @@ import Layout from './Layout';
 import SplashPage from '../components/SplashPage/SplashPage';
 import SpotDetailView from '../components/SpotDetailView/SpotDetailView';
 import NewSpotForm from '../components/NewSpotForm/NewSpotForm';
+import CurrentUserSpots from '../components/CurrentUserSpots/CurrentUserSpots';
 
 export const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
       {
         path: "/spots/new",
         element: <NewSpotForm />,
+      },
+      {
+        path: "/spots/current",
+        element: <CurrentUserSpots />,
       },
     ],
   },

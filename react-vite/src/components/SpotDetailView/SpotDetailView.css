@@ -1,0 +1,8 @@
+.spotDetailViewPictureContainer {
+    display: flex;
+}
+
+.spotDetailViewPictureContainer img{
+    width: 650px;
+    margin: 10px;
+}
