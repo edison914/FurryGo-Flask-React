@@ -12,6 +12,8 @@ function Navigation() {
       <li>
         <ProfileButton />
       </li>
+
+        <NavLink className='navbarNewPlace' to="/spots/new">Create Place</NavLink>
     </ul>
   );
 }
