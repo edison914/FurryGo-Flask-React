@@ -135,6 +135,7 @@ def update_spot(id):
         spot.website = (data["website"])
         spot.phone_number = (data["phone_number"])
 
+        #if the form.image_url fileField contains any upload info
         if form.image_url1.data:
             image1 = data["image_url1"]
             image1.filename = get_unique_filename(image1.filename)
@@ -144,8 +145,20 @@ def update_spot(id):
             if "url" not in upload_image1:
                 return {"error": "Upload was unsuccessful"}
 
+            #upload successful
             if "url" in upload_image1:
-                spot_image1 = Spot_Image.query.filter_by(spot_id=spot.id).first()
+                #retrive the spot image1 in the database
+                spot_image1 = Spot_Image.query.filter(Spot_Image.spot_id==spot.id).first()
+
+                #retrive the old image url of spot image1 from the existing database
+                old_image1_url = spot_image1.image_url
+                #if the old url has amazonaws in the link,
+                #delete the old image url record from aws
+                if "amazonaws" in old_image1_url:
+                    remove_file_from_s3(old_image1_url)
+
+                #reassign the new image url of spot image1 to the new aws link
+                #and commit
                 spot_image1.image_url = image1_url
                 db.session.commit()
 
@@ -159,7 +172,13 @@ def update_spot(id):
                 return {"error": "Upload was unsuccessful"}
 
             if "url" in upload_image2:
-                spot_image2 = Spot_Image.query.filter_by(spot_id=spot.id).first()
+                spot_image2 = Spot_Image.query.filter(Spot_Image.spot_id==spot.id).offset(1).first()
+
+                old_image2_url = spot_image2.image_url
+
+                if "amazonaws" in old_image2_url:
+                    remove_file_from_s3(old_image2_url)
+
                 spot_image2.image_url = image2_url
                 db.session.commit()
 
