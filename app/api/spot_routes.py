@@ -124,16 +124,16 @@ def update_spot(id):
         data = form.data
 
         spot.category = data["category"]
-        spot.address = (data["address"],)
-        spot.city = (data["city"],)
-        spot.state = (data["state"],)
-        spot.zip_code = (data["zip_code"],)
-        spot.lat = (data["lat"],)
-        spot.lng = (data["lng"],)
-        spot.name = (data["name"],)
-        spot.description = (data["description"],)
-        spot.website = (data["website"],)
-        spot.phone_number = (data["phone_number"],)
+        spot.address = (data["address"])
+        spot.city = (data["city"])
+        spot.state = (data["state"])
+        spot.zip_code = (data["zip_code"])
+        spot.lat = (data["lat"])
+        spot.lng = (data["lng"])
+        spot.name = (data["name"])
+        spot.description = (data["description"])
+        spot.website = (data["website"])
+        spot.phone_number = (data["phone_number"])
 
         if form.image_url1.data:
             image1 = data["image_url1"]
