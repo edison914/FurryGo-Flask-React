@@ -83,6 +83,26 @@ export const createSpotThunk = (spot) => async (dispatch) => {
   }
 };
 
+
+//thunk action to remove a spot
+export const removeSpotThunk = (spotId) => async (dispatch) => {
+  try {
+    const res = await fetch(`/api/spots/${spotId}`, {
+      method: "DELETE"
+    })
+    console.log(`res`, res)
+    if (res.ok) {
+      const data = await res.json();
+      // console.log(data);
+      dispatch(removeSpots(spotId));
+      return data;
+    }
+    throw res;
+  } catch (e) {
+    const data = await e.json();
+    return data;
+  }
+};
 //initial normalized state
 const initialState = { allSpots: [], byId: [] };
 
@@ -93,11 +113,16 @@ const spotReducers = (state = initialState, action) => {
       newState.allSpots = action.payload;
       action.payload.forEach((spot) => (newState.byId[spot.id] = spot));
       return newState;
-      
+
     case CREATE_SPOT:
       newState.allSpots.push(action.payload);
       newState.byId[action.payload.id] = action.payload;
       return newState;
+
+    case REMOVE_SPOT:
+        newState.allSpots = newState.allSpots.filter((spot) => (spot.id !== action.payload))
+        delete newState.byId[action.payload]
+        return newState;
 
     default:
       return state;
