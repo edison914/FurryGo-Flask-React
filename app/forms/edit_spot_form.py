@@ -33,8 +33,8 @@ class EditSpotForm(FlaskForm):
         validators=[
             DataRequired(),
             AnyOf(category, message="Select a category"),
-            no_white_space,
-        ],
+            no_white_space
+        ]
     )
 
     address = StringField(
@@ -42,8 +42,8 @@ class EditSpotForm(FlaskForm):
         validators=[
             DataRequired(),
             Length(max=150, message="Address cannot be longer than 150 characters"),
-            no_white_space,
-        ],
+            no_white_space
+        ]
     )
 
     city = StringField(
@@ -51,8 +51,8 @@ class EditSpotForm(FlaskForm):
         validators=[
             DataRequired(),
             Length(max=50, message="City cannot be longer than 50 characters"),
-            no_white_space,
-        ],
+            no_white_space
+        ]
     )
 
     state = StringField(
@@ -60,15 +60,15 @@ class EditSpotForm(FlaskForm):
         validators=[
             DataRequired(),
             Length(max=50, message="State cannot be longer than 50 characters"),
-            no_white_space,
-        ],
+            no_white_space
+        ]
     )
 
     zip_code = IntegerField(
         "Zip Code",
         validators=[
-            DataRequired(),
-        ],
+            DataRequired()
+        ]
     )
 
     lat = DecimalField(
@@ -76,8 +76,8 @@ class EditSpotForm(FlaskForm):
         places=5,
         rounding=None,
         validators=[
-            DataRequired(),
-        ],
+            DataRequired()
+        ]
     )
 
     lng = DecimalField(
@@ -85,8 +85,8 @@ class EditSpotForm(FlaskForm):
         places=5,
         rounding=None,
         validators=[
-            DataRequired(),
-        ],
+            DataRequired()
+        ]
     )
 
     name = StringField(
@@ -95,7 +95,7 @@ class EditSpotForm(FlaskForm):
             DataRequired(),
             Length(max=100, message="Name cannot be longer than 100 characters"),
             no_white_space,
-        ],
+        ]
     )
 
     description = TextAreaField(
@@ -105,16 +105,16 @@ class EditSpotForm(FlaskForm):
             Length(
                 max=5000, message="Description cannot be longer than 5000 characters"
             ),
-            no_white_space,
-        ],
+            no_white_space
+        ]
     )
 
     website = URLField(
         "website",
         validators=[
             Length(max=200, message="website url cannot be longer than 200 characters"),
-            no_white_space,
-        ],
+            no_white_space
+        ]
     )
 
     phone_number = IntegerField("Phone number", validators=[check_phone_digits])
@@ -125,8 +125,8 @@ class EditSpotForm(FlaskForm):
             FileAllowed(
                 list(ALLOWED_IMAGE_EXTENSIONS),
                 message=f"Please choose a valid file extension. ({extension_joined})",
-            ),
-        ],
+            )
+        ]
     )
 
     image_url2 = FileField(
@@ -135,6 +135,6 @@ class EditSpotForm(FlaskForm):
             FileAllowed(
                 list(ALLOWED_IMAGE_EXTENSIONS),
                 message=f"Please choose a valid file extension. ({extension_joined})",
-            ),
-        ],
+            )
+        ]
     )
