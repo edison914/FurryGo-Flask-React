@@ -1,6 +1,5 @@
 //action types
 const LOAD_SPOTS = "spots/LOAD_SPOTS";
-const LOAD_CURRENT_USER_SPOTS = "spots/LOAD_CURRENT_USER_SPOTS";
 const REMOVE_SPOT = "spots/REMOVE_SPOT";
 const CREATE_SPOT = "spots/CREATE_SPOT";
 const EDIT_SPOT = "spots/EDIT_SPOT";

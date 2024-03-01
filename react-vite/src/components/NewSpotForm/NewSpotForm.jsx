@@ -30,6 +30,7 @@ const NewSpotForm = () => {
     e.preventDefault();
     setIsButtonDisabled(true);
     setHasSubmitted(true);
+
     setValidationErrors({});
 
     const formData = new FormData();
@@ -51,6 +52,7 @@ const NewSpotForm = () => {
     console.log(`what is the res`, res)
     if (!res.id) {
       setValidationErrors(res)
+
       setIsButtonDisabled(false)
       console.log(res)
     } else {
