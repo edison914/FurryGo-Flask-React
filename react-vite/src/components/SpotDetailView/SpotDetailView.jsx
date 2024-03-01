@@ -6,11 +6,13 @@ import { getSpotsThunk } from "../../redux/spots";
 import CommentsBySpot from "../CommentsBySpot/CommentsBySpot";
 import NewCommentModal from "../NewCommentModal/NewCommentModal";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import LoginFormModal from "../LoginFormModal/LoginFormModal";
 
 const SpotDetailView = () => {
   const dispatch = useDispatch();
   const { spotId } = useParams();
   const currentSpot = useSelector((state) => state.spots.byId[spotId]);
+  const currentUser = useSelector((state) => state.session.user);
 
   useEffect(() => {
     dispatch(getSpotsThunk());
@@ -33,12 +35,19 @@ const SpotDetailView = () => {
 
       <h3>{currentSpot?.category}</h3>
       <h3>{currentSpot?.name}</h3>
-      <div className="newCommentModalContainer">
+      {currentUser ? (
+        <div className="newCommentModalContainer">
+          <OpenModalButton
+            modalComponent={<NewCommentModal spot={currentSpot} />}
+            buttonText="Add Your Comment"
+          />
+        </div>
+      ) : (
         <OpenModalButton
-          modalComponent={<NewCommentModal spot={currentSpot} />}
+          modalComponent={<LoginFormModal spot={currentSpot} />}
           buttonText="Add Your Comment"
         />
-      </div>
+      )}
 
       <div>
         {currentSpot?.city}, {currentSpot?.state}
