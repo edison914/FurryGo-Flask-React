@@ -141,11 +141,13 @@ def update_spot(id):
         spot.phone_number = data["phone_number"]
 
         # if the form.image_url fileField contains any upload info
-        if form.image_url1.data:
+        print("image_url1", data['image_url1'])
+
+        if data['image_url1']:
             image1 = data["image_url1"]
             image1.filename = get_unique_filename(image1.filename)
             upload_image1 = upload_file_to_s3(image1)
-            image1_url = upload_image1("url")
+            image1_url = upload_image1["url"]
 
             if "url" not in upload_image1:
                 return {"error": "Upload was unsuccessful"}
@@ -169,11 +171,11 @@ def update_spot(id):
                 spot_image1.image_url = image1_url
                 db.session.commit()
 
-        if form.image_url2.data:
+        if data['image_url2']:
             image2 = data["image_url2"]
             image2.filename = get_unique_filename(image2.filename)
             upload_image2 = upload_file_to_s3(image2)
-            image2_url = upload_image2("url")
+            image2_url = upload_image2["url"]
 
             if "url" not in upload_image2:
                 return {"error": "Upload was unsuccessful"}

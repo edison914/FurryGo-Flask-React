@@ -4,6 +4,7 @@ import SplashPage from '../components/SplashPage/SplashPage';
 import SpotDetailView from '../components/SpotDetailView/SpotDetailView';
 import NewSpotForm from '../components/NewSpotForm/NewSpotForm';
 import CurrentUserSpots from '../components/CurrentUserSpots/CurrentUserSpots';
+import EditSpotForm from '../components/EditSpotForm/EditSpotForm';
 
 export const router = createBrowserRouter([
   {
@@ -24,6 +25,10 @@ export const router = createBrowserRouter([
       {
         path: "/spots/current",
         element: <CurrentUserSpots />,
+      },
+      {
+        path: "/spots/:spotId/edit",
+        element: <EditSpotForm />,
       },
     ],
   },
