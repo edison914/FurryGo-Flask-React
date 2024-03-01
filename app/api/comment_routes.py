@@ -38,7 +38,7 @@ def update_comment(comment_id):
             image = data["image_url"]
             image.filename = get_unique_filename(image.filename)
             upload_image = upload_file_to_s3(image)
-            image_url = upload_image("url")
+            image_url = upload_image["url"]
 
             if "url" not in upload_image:
                 return {"error": "Upload was unsuccessful"}

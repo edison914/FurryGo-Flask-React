@@ -13,6 +13,7 @@ const EditSpotForm = () => {
   // console.log(`spot`, spot )
   const user = useSelector((state) => state.session.user);
   const userId = user.Id;
+
   useEffect(() => {
     dispatch(getCurrentUserSpotsThunk(userId));
   }, [dispatch, userId]);

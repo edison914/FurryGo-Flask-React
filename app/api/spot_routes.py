@@ -257,25 +257,36 @@ def add_comments_for_spot(spot_id):
     if form.validate_on_submit():
         data = form.data
 
-        image1 = data["image_url"]
-        image1.filename = get_unique_filename(image1.filename)
-        upload_image1 = upload_file_to_s3(image1)
+        if data['image_url']:
+            image = data["image_url"]
+            image.filename = get_unique_filename(image.filename)
+            upload_image = upload_file_to_s3(image)
 
-        if "url" not in upload_image1:
-            return {"error": "Upload was unsuccessful"}
+            if "url" not in upload_image:
+                return {"error": "Upload was unsuccessful"}
 
-        image1_url = upload_image1("url")
+            image_url = upload_image["url"]
 
-        new_comment = Comment(
+            new_comment = Comment(
+                comment_text=form.data["comment_text"],
+                image_url=image_url,
+                user_id=current_user.id,
+                spot_id=spot_id,
+            )
+            db.session.add(new_comment)
+            db.session.commit()
+            return new_comment.to_dict()
+
+        if data['image_url'] == None:
+            new_comment = Comment(
             comment_text=form.data["comment_text"],
-            # image_url=form.data['image_url'],
-            image_url=image1_url,
             user_id=current_user.id,
             spot_id=spot_id,
-        )
+            )
+            print(new_comment)
+            db.session.add(new_comment)
+            db.session.commit()
+            return new_comment.to_dict()
 
-        db.session.add(new_comment)
-        db.session.commit()
-        return new_comment.to_dict()
 
     return form.errors, 401
