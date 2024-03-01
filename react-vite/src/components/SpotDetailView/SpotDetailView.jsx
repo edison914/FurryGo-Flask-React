@@ -7,7 +7,6 @@ import CommentsBySpot from "../CommentsBySpot/CommentsBySpot";
 import NewCommentModal from "../NewCommentModal/NewCommentModal";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 
-
 const SpotDetailView = () => {
   const dispatch = useDispatch();
   const { spotId } = useParams();

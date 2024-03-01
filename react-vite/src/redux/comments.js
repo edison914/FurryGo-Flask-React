@@ -1,5 +1,5 @@
 //action types
-const GET_ALL_COMMENTS_BY_SPOT_ID= "comments/GET_ALL_COMMENTS_BY_SPOT_ID";
+const GET_ALL_COMMENTS_BY_SPOT_ID = "comments/GET_ALL_COMMENTS_BY_SPOT_ID";
 const POST_COMMENT = "comments/POST_COMMENT";
 const EDIT_COMMENT = "comments/EDIT_Comment";
 const REMOVE_COMMENT = "comments/REMOVE_COMMENT";
@@ -33,7 +33,6 @@ const removeComment = (commentId) => {
   };
 };
 
-
 export const getCommentsThunk = (spotId) => async (dispatch) => {
   try {
     const res = await fetch(`/api/spots/${spotId}/comments`);
@@ -44,7 +43,7 @@ export const getCommentsThunk = (spotId) => async (dispatch) => {
     }
     throw res;
   } catch (e) {
-    const data = await e.json()
+    const data = await e.json();
     return data;
   }
 };
@@ -53,20 +52,20 @@ export const postCommentThunk = (formData, spotId) => async (dispatch) => {
   try {
     const res = await fetch(`/api/spots/${spotId}/comments`, {
       method: "POST",
-      body: formData
+      body: formData,
     });
 
     if (res.ok) {
       const data = await res.json();
-      console.log(`good`, data)
+      console.log(`good`, data);
       dispatch(addComment(data));
       dispatch(getCommentsThunk(spotId));
       return data;
     }
     throw res;
   } catch (e) {
-    const data = await e.json()
-    console.log(`bad`, data)
+    const data = await e.json();
+    console.log(`bad`, data);
     return data;
   }
 };
@@ -89,7 +88,7 @@ export const editCommentThunk =
       }
       throw res;
     } catch (e) {
-      const data = await e.json()
+      const data = await e.json();
       return data;
     }
   };
@@ -106,7 +105,7 @@ export const deleteCommentThunk = (commentId) => async (dispatch) => {
     }
     throw res;
   } catch (e) {
-    const data = await e.json()
+    const data = await e.json();
     return data;
   }
 };

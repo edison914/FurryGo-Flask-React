@@ -1,6 +1,5 @@
-import { useDispatch, useSelector } from "react-redux";
-// import { useParams } from "react-router-dom";
-import { useState, useEffect } from "react";
+import { useDispatch} from "react-redux";
+import { useState} from "react";
 import "./NewCommentModal.css";
 import { postCommentThunk } from "../../redux/comments";
 import { useModal } from "../../context/Modal";

@@ -8,9 +8,10 @@ from app.api.aws_helpers import (
     remove_file_from_s3,
 )
 
-comment_routes = Blueprint('comments', __name__)
+comment_routes = Blueprint("comments", __name__)
 
-@comment_routes.route('/<int:comment_id>', methods=['PUT', 'PATCH'])
+
+@comment_routes.route("/<int:comment_id>", methods=["PUT", "PATCH"])
 @login_required
 def update_comment(comment_id):
     """
@@ -19,20 +20,19 @@ def update_comment(comment_id):
     """
     current_comment = Comment.query.get(comment_id)
 
-
     if not current_comment:
-        return {'error': 'no comment is found'}, 404
+        return {"error": "no comment is found"}, 404
 
     if current_comment.user_id != current_user.id:
-        return {'error':'Not Authorized'}, 403
+        return {"error": "Not Authorized"}, 403
 
     form = NewCommentForm()
-    form['csrf_token'].data = request.cookies['csrf_token']
+    form["csrf_token"].data = request.cookies["csrf_token"]
 
     if form.validate_on_submit():
         data = form.data
 
-        current_comment.comment_text=data['comment_text']
+        current_comment.comment_text = data["comment_text"]
 
         if form.image_url.data:
             image = data["image_url"]
@@ -45,13 +45,13 @@ def update_comment(comment_id):
 
             if "url" in upload_image:
 
-                #retrive the old image url from current comment
+                # retrive the old image url from current comment
                 old_image_url = current_comment.image_url
 
-                #check the old image url to see if its an aws link
+                # check the old image url to see if its an aws link
                 if "amazonaws" in old_image_url:
                     remove_file_from_s3(old_image_url)
-                #reassign the new image url to the comment.
+                # reassign the new image url to the comment.
                 current_comment.image_url = image_url
                 db.session.commit()
 
@@ -61,7 +61,8 @@ def update_comment(comment_id):
 
     return form.errors, 401
 
-@comment_routes.route('/<int:comment_id>', methods=['DELETE'])
+
+@comment_routes.route("/<int:comment_id>", methods=["DELETE"])
 @login_required
 def delete_comment(comment_id):
     """
@@ -71,10 +72,10 @@ def delete_comment(comment_id):
     current_comment = Comment.query.get(comment_id)
 
     if not current_comment:
-        return {'error': 'no comment is found'}, 404
+        return {"error": "no comment is found"}, 404
 
     if current_comment.user_id != current_user.id:
-        return {'error':'Not Authorized'}, 403
+        return {"error": "Not Authorized"}, 403
 
     if current_comment.image_url and "amazonaws" in current_comment.image_url:
         remove_file_from_s3(current_comment.image_url)
@@ -82,4 +83,4 @@ def delete_comment(comment_id):
     db.session.delete(current_comment)
     db.session.commit()
 
-    return {'message':'succcessfully deleted'}
+    return {"message": "succcessfully deleted"}

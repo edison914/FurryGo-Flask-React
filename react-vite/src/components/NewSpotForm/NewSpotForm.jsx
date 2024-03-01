@@ -51,18 +51,18 @@ const NewSpotForm = () => {
     const res = await dispatch(createSpotThunk(formData));
     // console.log(`what is the res`, res)
     if (!res.id) {
-      setValidationErrors(res)
+      setValidationErrors(res);
 
-      setIsButtonDisabled(false)
+      setIsButtonDisabled(false);
       // console.log(res)
     } else {
-      navigate(`/spots/${res.id}`)
+      navigate(`/spots/${res.id}`);
     }
   };
 
   const handleCancelSubmit = () => {
-    navigate(`/`)
-}
+    navigate(`/`);
+  };
 
   if (!user) return <h2 className="sign-in">Forgot to sign in?</h2>;
 
@@ -264,9 +264,7 @@ const NewSpotForm = () => {
         >
           Cancel
         </button>
-
       </form>
-
     </div>
   );
 };
