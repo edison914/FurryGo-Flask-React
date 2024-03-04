@@ -8,12 +8,13 @@ body {
     margin-left: 0px;
     margin-right: 0px;
     margin-top: 0px;
+    background-color: #EDEFEE;
   }
 
 
-#root {
+/* #root {
     background-color: #EDEFEE;
-}
+} */
 .formContainer {
     display: flex;
     flex-direction: column;

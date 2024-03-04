@@ -4,7 +4,7 @@ import { getCurrentUserSpotsThunk } from "../../redux/spots";
 import SpotSimpleView from "../SpotSimpleView/SpotSimpleView";
 import DeleteASpot from "../DeleteASpotModal/DeleteASpotModal";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
-import { NavLink} from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import LoginFormModal from "../LoginFormModal/LoginFormModal";
 
 const CurrentUserSpots = () => {
@@ -12,31 +12,30 @@ const CurrentUserSpots = () => {
   const userId = useSelector((state) => state.session?.user?.id);
   const spots = useSelector((state) => state.spots?.allSpots);
 
-
   // console.log(userId)
   useEffect(() => {
     dispatch(getCurrentUserSpotsThunk(userId));
   }, [dispatch, userId]);
 
-  if (!spots.length) return (
-    <div>
-    <h1>You do not have any place. Create one now!</h1>
-<button>
-  <NavLink to="/spots/new">Create a new place</NavLink>
-</button>
-</div>
-  )
-
-
-    if (!userId) return (
+  if (!spots.length)
+    return (
       <div>
-        <h2>Forgot to sign in</h2>
-         <OpenModalButton
-          modalComponent={<LoginFormModal/>}
+        <h1>You do not have any place. Create one now!</h1>
+        <button>
+          <NavLink to="/spots/new">Create a new place</NavLink>
+        </button>
+      </div>
+    );
+
+  if (!userId)
+    return (
+      <div>
+        <h1>Forgot to sign in</h1>
+        <OpenModalButton
+          modalComponent={<LoginFormModal />}
           buttonText="Sign in here"
         />
       </div>
-
     );
 
   return (
@@ -63,13 +62,12 @@ const CurrentUserSpots = () => {
                 <div className="SpotEditButton">
                   <button>
                     <NavLink to={`/spots/${spot.id}/edit`}>
-                        Edit a place
+                      Edit a place
                     </NavLink>
                   </button>
                 </div>
               </div>
             )}
-
           </div>
         ))}
       </div>

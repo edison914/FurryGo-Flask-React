@@ -2,6 +2,8 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router-dom";
 import { createSpotThunk } from "../../redux/spots";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import LoginFormModal from "../LoginFormModal/LoginFormModal";
 
 const NewSpotForm = () => {
   const navigate = useNavigate();
@@ -64,7 +66,15 @@ const NewSpotForm = () => {
     navigate(`/`);
   };
 
-  if (!user) return <h2 className="sign-in">Forgot to sign in?</h2>;
+  if (!user) return (
+    <div>
+      <h1>Forgot to sign in</h1>
+      <OpenModalButton
+        modalComponent={<LoginFormModal />}
+        buttonText="Sign in here"
+      />
+    </div>
+  );
 
   return (
     <div>
