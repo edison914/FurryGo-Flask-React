@@ -4,13 +4,15 @@ import { getCurrentUserSpotsThunk } from "../../redux/spots";
 import SpotSimpleView from "../SpotSimpleView/SpotSimpleView";
 import DeleteASpot from "../DeleteASpotModal/DeleteASpotModal";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
+import LoginFormModal from "../LoginFormModal/LoginFormModal";
 
 const CurrentUserSpots = () => {
   const dispatch = useDispatch();
   const userId = useSelector((state) => state.session?.user?.id);
   const spots = useSelector((state) => state.spots?.allSpots);
-  
+
+
   // console.log(userId)
   useEffect(() => {
     dispatch(getCurrentUserSpotsThunk(userId));
@@ -24,6 +26,17 @@ const CurrentUserSpots = () => {
           <NavLink to="/spots/new">Create a new place</NavLink>
         </button>
       </div>
+    );
+
+    if (!userId) return (
+      <div>
+        <h2>Forgot to sign in</h2>
+         <OpenModalButton
+          modalComponent={<LoginFormModal/>}
+          buttonText="Sign in here"
+        />
+      </div>
+
     );
 
   return (
