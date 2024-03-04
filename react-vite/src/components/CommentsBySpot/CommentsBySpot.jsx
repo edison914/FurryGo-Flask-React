@@ -10,17 +10,15 @@ import EditCommentModal from "../EditACommentModal/EditACommentModal";
 const CommentsBySpot = () => {
   const { spotId } = useParams();
   const allComments = useSelector((state) => state.comments.allComments);
-  allComments.sort((a, b) => {
-    const dateA = new Date(a.updated_at);
-    const dateB = new Date(b.updated_at);
-    return dateB - dateA;
-  });
-  console.log(allComments);
+  allComments.sort((a, b) =>   {const dateA = new Date(a.updated_at);
+  const dateB = new Date(b.updated_at);
+  return dateB - dateA;});
+  // console.log(allComments)
   const currentUser = useSelector((state) => state.session.user);
   const spot = useSelector((state) => state.spots.byId[spotId]);
   //   const spot = useSelector((state) => state.spots.byId[spotId]);
   const dispatch = useDispatch();
-  console.log(allComments);
+  // console.log(allComments);
   useEffect(() => {
     dispatch(getCommentsThunk(spotId));
   }, [dispatch, spotId]);

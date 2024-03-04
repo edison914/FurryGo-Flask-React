@@ -57,7 +57,7 @@ export const postCommentThunk = (formData, spotId) => async (dispatch) => {
 
     if (res.ok) {
       const data = await res.json();
-      console.log(`good`, data);
+      // console.log(`good`, data);
       dispatch(addComment(data));
       dispatch(getCommentsThunk(spotId));
       return data;
@@ -65,7 +65,7 @@ export const postCommentThunk = (formData, spotId) => async (dispatch) => {
     throw res;
   } catch (e) {
     const data = await e.json();
-    console.log(`bad`, data);
+    // console.log(`bad`, data);
     return data;
   }
 };

@@ -40,7 +40,7 @@ export const getSpotsThunk = () => async (dispatch) => {
 
     if (res.ok) {
       const data = await res.json();
-      console.log(data);
+      // console.log(data);
       dispatch(loadSpots(data.spots));
       return data;
     }
@@ -117,7 +117,7 @@ export const removeSpotThunk = (spotId) => async (dispatch) => {
     const res = await fetch(`/api/spots/${spotId}`, {
       method: "DELETE",
     });
-    console.log(`res`, res);
+    // console.log(`res`, res);
     if (res.ok) {
       const data = await res.json();
       // console.log(data);
