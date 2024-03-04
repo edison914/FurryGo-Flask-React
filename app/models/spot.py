@@ -55,11 +55,17 @@ class Spot(db.Model):
         "Rating", back_populates="spot", cascade="all, delete"
     )
 
+
     #many to many between spots and bookmarks goes here
     bookmarks = db.relationship('Bookmark', secondary=bookmark_spots, back_populates='spots')
 
     # a function to return the spot in json format.
     def to_dict(self):
+        average_rating = None
+        if self.ratings:
+            total_ratings = sum(self.ratings)
+            average_rating = total_ratings / len(self.ratings)
+
         return {
             "id": self.id,
             "user_id": self.user_id,
@@ -78,6 +84,8 @@ class Spot(db.Model):
             "description": self.description,
             "website": self.website,
             "phone_number": self.phone_number,
+            "ratings": self.ratings,
+            "average_rating": average_rating,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
