@@ -117,7 +117,7 @@ class EditSpotForm(FlaskForm):
         ]
     )
 
-    phone_number = IntegerField("Phone number", validators=[check_phone_digits])
+    phone_number = StringField("Phone number", validators=[check_phone_digits])
 
     image_url1 = FileField(
         "Image URL1",
