@@ -13,8 +13,10 @@ const EditSpotForm = () => {
   // console.log(`spotId`, spotId)
   const spot = useSelector((state) => state.spots.byId[spotId]);
   // console.log(`spot`, spot )
-  const user = useSelector((state) => state.session.user);
-  const userId = user.Id;
+  const user = useSelector((state) => state.session?.user);
+  // console.log(`user`, user);
+  const userId = user?.id;
+  // console.log(userId);
 
   useEffect(() => {
     dispatch(getCurrentUserSpotsThunk(userId));
@@ -74,7 +76,6 @@ const EditSpotForm = () => {
     navigate(`/spots/current`);
   };
 
-
   if (!userId)
     return (
       <div>
@@ -85,7 +86,6 @@ const EditSpotForm = () => {
         />
       </div>
     );
-
 
   return (
     <div>

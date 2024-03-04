@@ -22,22 +22,24 @@ category = [
     "Hotels",
     "Shops",
 ]
+def zip_code_check(FlaskForm, field):
+    if field.data and len(str(field.data)) != 5:
+        raise ValidationError("Zip code must be 5 digits only.")
+def no_white_space(FlaskForm, field):
+    if field.data and field.data.startswith(" "):
+        raise ValidationError("Content should not start with whitespace.")
+    if field.data and field.data.endswith(" "):
+        raise ValidationError("Content should not end with whitespace.")
+
+def check_phone_digits(FlaskForm, field):
+    if field.data and len(str(field.data)) != 10:
+        raise ValidationError("Phone number must be 10 digits only.")
+
 
 
 class NewSpotForm(FlaskForm):
-    def no_white_space(FlaskForm, field):
-        if field.data and field.data.startswith(" "):
-            raise ValidationError("Content should not start with whitespace.")
-        if field.data and field.data.endswith(" "):
-            raise ValidationError("Content should not end with whitespace.")
 
-    def check_phone_digits(FlaskForm, field):
-        if field.data and len(str(field.data)) != 10:
-            raise ValidationError("Phone number must be 10 digits only.")
 
-    def zip_code_check(FlaskForm, field):
-        if field.data and len(str(field.data)) != 5:
-            raise ValidationError("Zip code must be 5 digits only.")
 
     category = StringField(
         "Category",
@@ -105,7 +107,7 @@ class NewSpotForm(FlaskForm):
         ]
     )
 
-    phone_number = IntegerField(
+    phone_number = StringField(
         "Phone number",
         validators=[Optional(),check_phone_digits],
     )

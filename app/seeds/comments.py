@@ -67,8 +67,7 @@ def seed_comments():
             image_url=random.choice(urls),
             user_id=random.randrange(1, 23),
             #random
-            spot_id=1
-            # spot_id=random.randrange(1, 20)
+            spot_id=random.randrange(1, 20)
         )
         db.session.add(new_comment)
 
