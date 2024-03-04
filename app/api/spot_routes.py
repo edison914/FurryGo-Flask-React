@@ -47,7 +47,7 @@ def get_spot_by_id(id):
     return {"spots": [spot.to_dict()]}
 
 
-@spot_routes.route("/", methods=["POST"])
+@spot_routes.route("", methods=["POST"])
 @login_required
 def create_a_spot():
     """
@@ -70,8 +70,13 @@ def create_a_spot():
         if "url" not in upload_image1 or "url" not in upload_image2:
             return {"error": "Upload was unsuccessful"}
 
-        image1_url = upload_image1("url")
-        image2_url = upload_image2("url")
+        # print("upload_image1.", upload_image1)
+
+        image1_url = upload_image1["url"]
+
+        # print("image1_url.", image1_url)
+
+        image2_url = upload_image2["url"]
 
         new_spot = Spot(
             user_id=current_user.id,
@@ -124,42 +129,69 @@ def update_spot(id):
         data = form.data
 
         spot.category = data["category"]
-        spot.address = (data["address"])
-        spot.city = (data["city"])
-        spot.state = (data["state"])
-        spot.zip_code = (data["zip_code"])
-        spot.lat = (data["lat"])
-        spot.lng = (data["lng"])
-        spot.name = (data["name"])
-        spot.description = (data["description"])
-        spot.website = (data["website"])
-        spot.phone_number = (data["phone_number"])
+        spot.address = data["address"]
+        spot.city = data["city"]
+        spot.state = data["state"]
+        spot.zip_code = data["zip_code"]
+        spot.lat = data["lat"]
+        spot.lng = data["lng"]
+        spot.name = data["name"]
+        spot.description = data["description"]
+        spot.website = data["website"]
+        spot.phone_number = data["phone_number"]
 
-        if form.image_url1.data:
+        # if the form.image_url fileField contains any upload info
+        print("image_url1", data['image_url1'])
+
+        if data['image_url1']:
             image1 = data["image_url1"]
             image1.filename = get_unique_filename(image1.filename)
             upload_image1 = upload_file_to_s3(image1)
-            image1_url = upload_image1("url")
+            image1_url = upload_image1["url"]
 
             if "url" not in upload_image1:
                 return {"error": "Upload was unsuccessful"}
 
+            # upload successful
             if "url" in upload_image1:
-                spot_image1 = Spot_Image.query.filter_by(spot_id=spot.id).first()
+                # retrive the spot image1 in the database
+                spot_image1 = Spot_Image.query.filter(
+                    Spot_Image.spot_id == spot.id
+                ).first()
+
+                # retrive the old image url of spot image1 from the existing database
+                old_image1_url = spot_image1.image_url
+                # if the old url has amazonaws in the link,
+                # delete the old image url record from aws
+                if "amazonaws" in old_image1_url:
+                    remove_file_from_s3(old_image1_url)
+
+                # reassign the new image url of spot image1 to the new aws link
+                # and commit
                 spot_image1.image_url = image1_url
                 db.session.commit()
 
-        if form.image_url2.data:
+        if data['image_url2']:
             image2 = data["image_url2"]
             image2.filename = get_unique_filename(image2.filename)
             upload_image2 = upload_file_to_s3(image2)
-            image2_url = upload_image2("url")
+            image2_url = upload_image2["url"]
 
             if "url" not in upload_image2:
                 return {"error": "Upload was unsuccessful"}
 
             if "url" in upload_image2:
-                spot_image2 = Spot_Image.query.filter_by(spot_id=spot.id).first()
+                spot_image2 = (
+                    Spot_Image.query.filter(Spot_Image.spot_id == spot.id)
+                    .offset(1)
+                    .first()
+                )
+
+                old_image2_url = spot_image2.image_url
+
+                if "amazonaws" in old_image2_url:
+                    remove_file_from_s3(old_image2_url)
+
                 spot_image2.image_url = image2_url
                 db.session.commit()
 
@@ -225,25 +257,36 @@ def add_comments_for_spot(spot_id):
     if form.validate_on_submit():
         data = form.data
 
-        image1 = data["image_url"]
-        image1.filename = get_unique_filename(image1.filename)
-        upload_image1 = upload_file_to_s3(image1)
+        if data['image_url']:
+            image = data["image_url"]
+            image.filename = get_unique_filename(image.filename)
+            upload_image = upload_file_to_s3(image)
 
-        if "url" not in upload_image1:
-            return {"error": "Upload was unsuccessful"}
+            if "url" not in upload_image:
+                return {"error": "Upload was unsuccessful"}
 
-        image1_url = upload_image1("url")
+            image_url = upload_image["url"]
 
-        new_comment = Comment(
+            new_comment = Comment(
+                comment_text=form.data["comment_text"],
+                image_url=image_url,
+                user_id=current_user.id,
+                spot_id=spot_id,
+            )
+            db.session.add(new_comment)
+            db.session.commit()
+            return new_comment.to_dict()
+
+        if data['image_url'] == None:
+            new_comment = Comment(
             comment_text=form.data["comment_text"],
-            # image_url=form.data['image_url'],
-            image_url=image1_url,
             user_id=current_user.id,
             spot_id=spot_id,
-        )
+            )
+            print(new_comment)
+            db.session.add(new_comment)
+            db.session.commit()
+            return new_comment.to_dict()
 
-        db.session.add(new_comment)
-        db.session.commit()
-        return new_comment.to_dict()
 
     return form.errors, 401

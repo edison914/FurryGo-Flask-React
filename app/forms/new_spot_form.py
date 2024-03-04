@@ -9,18 +9,18 @@ from wtforms import (
     URLField,
     TelField,
 )
-from wtforms.validators import DataRequired, Length, AnyOf, ValidationError
+from wtforms.validators import DataRequired, Length, AnyOf, ValidationError, Optional
 from app.api.aws_helpers import ALLOWED_IMAGE_EXTENSIONS
 
 extension_joined = ", ".join(ALLOWED_IMAGE_EXTENSIONS)
 
 category = [
-    "restaurants",
-    "cafes",
-    "parks",
-    "events",
-    "hotels",
-    "shops",
+    "Restaurants",
+    "Cafes",
+    "Parks",
+    "Events",
+    "Hotels",
+    "Shops",
 ]
 
 
@@ -34,6 +34,10 @@ class NewSpotForm(FlaskForm):
     def check_phone_digits(FlaskForm, field):
         if field.data and len(str(field.data)) != 10:
             raise ValidationError("Phone number must be 10 digits only.")
+
+    def zip_code_check(FlaskForm, field):
+        if field.data and len(str(field.data)) != 5:
+            raise ValidationError("Zip code must be 5 digits only.")
 
     category = StringField(
         "Category",
@@ -67,7 +71,7 @@ class NewSpotForm(FlaskForm):
         ]
     )
 
-    zip_code = IntegerField("Zip Code", validators=[DataRequired()])
+    zip_code = IntegerField("Zip Code", validators=[DataRequired(), zip_code_check])
 
     lat = DecimalField("Lat", places=5, rounding=None, validators=[DataRequired()])
 
@@ -103,7 +107,7 @@ class NewSpotForm(FlaskForm):
 
     phone_number = IntegerField(
         "Phone number",
-        validators=[check_phone_digits],
+        validators=[Optional(),check_phone_digits],
     )
 
     image_url1 = FileField(
@@ -120,7 +124,7 @@ class NewSpotForm(FlaskForm):
     image_url2 = FileField(
         "Image URL2",
         validators=[
-            FileRequired(message="Please select an imgage to upload"),
+            FileRequired(message="Please select an image to upload"),
             FileAllowed(
                 list(ALLOWED_IMAGE_EXTENSIONS),
                 message=f"Please choose a valid file extension. ({extension_joined})",

@@ -29,7 +29,7 @@ function LoginFormModal() {
   };
 
   return (
-    <>
+    <div className="profile-dropdown-login" >
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -52,9 +52,15 @@ function LoginFormModal() {
           />
         </label>
         {errors.password && <p>{errors.password}</p>}
+        <button type='submit' onClick={() => {
+            setEmail('demo@aa.io')
+            setPassword('password')
+          }}>
+            Demo Login
+          </button>
         <button type="submit">Log In</button>
       </form>
-    </>
+    </div>
   );
 }
 

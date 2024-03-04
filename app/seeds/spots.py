@@ -14,7 +14,7 @@ categorys = [
 def seed_spots():
     rest1 = Spot(
         user_id=1,
-        category="restaurants",
+        category="Restaurants",
         address="1617 Washington Plaza N",
         city="Reston",
         state="VA",
@@ -28,7 +28,7 @@ def seed_spots():
     )
     rest2 = Spot(
         user_id=2,
-        category="restaurants",
+        category="Restaurants",
         address="14333 Newbrook Dr",
         city="Chantilly",
         state="VA",
@@ -42,7 +42,7 @@ def seed_spots():
     )
     rest3 = Spot(
         user_id=3,
-        category="restaurants",
+        category="Restaurants",
         address="130 N Washington St",
         city="Falls Church",
         state="VA",
@@ -56,7 +56,7 @@ def seed_spots():
     )
     park1 = Spot(
         user_id=1,
-        category="parks",
+        category="Parks",
         address="700 Courthouse Rd",
         city="Vienna",
         state="VA",
@@ -70,7 +70,7 @@ def seed_spots():
     )
     park2 = Spot(
         user_id=1,
-        category="parks",
+        category="Parks",
         address="301 S Harrison St",
         city="Arlington",
         state="VA",
@@ -83,7 +83,7 @@ def seed_spots():
     )
     park3 = Spot(
         user_id=2,
-        category="parks",
+        category="Parks",
         address="2710 S Oakland St",
         city="Arlington",
         state="VA",
@@ -98,7 +98,7 @@ def seed_spots():
 
     shop1 = Spot(
         user_id=3,
-        category="shops",
+        category="Shops",
         address="6555 Little River Turnpike",
         city="Alexandria",
         state="VA",
@@ -112,7 +112,7 @@ def seed_spots():
     )
     shop2 = Spot(
         user_id=4,
-        category="shops",
+        category="Shops",
         address="1961 Chain Bridge Rd",
         city="Tysons",
         state="VA",
@@ -126,7 +126,7 @@ def seed_spots():
     )
     event1 = Spot(
         user_id=4,
-        category="events",
+        category="Events",
         address="1500 South Capitol St SE",
         city="Washington",
         state="DC",
@@ -141,7 +141,7 @@ def seed_spots():
 
     hotel1 = Spot(
         user_id=5,
-        category="hotels",
+        category="Hotels",
         address="3950 Fair Ridge Dr",
         city="Fairfax",
         state="VA",
