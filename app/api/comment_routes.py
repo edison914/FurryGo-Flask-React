@@ -46,16 +46,22 @@ def update_comment(comment_id):
                 return {"error": "Upload was unsuccessful"}
 
             if "url" in upload_image:
+                print("image url",current_comment.image_url)
+                if current_comment.image_url is not None:
 
-                # retrive the old image url from current comment
-                old_image_url = current_comment.image_url
+                    # retrive the old image url from current comment
+                    old_image_url = current_comment.image_url
 
-                # check the old image url to see if its an aws link
-                if "amazonaws" in old_image_url:
-                    remove_file_from_s3(old_image_url)
-                # reassign the new image url to the comment.
-                current_comment.image_url = image_url
-                db.session.commit()
+                    # check the old image url to see if its an aws link
+                    if "amazonaws" in old_image_url:
+                        remove_file_from_s3(old_image_url)
+                    # reassign the new image url to the comment.
+                    current_comment.image_url = image_url
+                    db.session.commit()
+                else:
+                    current_comment.image_url = image_url
+                    db.session.commit()
+
 
         db.session.commit()
 

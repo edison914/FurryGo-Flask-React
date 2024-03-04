@@ -4,7 +4,7 @@ import { getCurrentUserSpotsThunk } from "../../redux/spots";
 import SpotSimpleView from "../SpotSimpleView/SpotSimpleView";
 import DeleteASpot from "../DeleteASpotModal/DeleteASpotModal";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
-import { NavLink, useLocation } from "react-router-dom";
+import { NavLink} from "react-router-dom";
 import LoginFormModal from "../LoginFormModal/LoginFormModal";
 
 const CurrentUserSpots = () => {
