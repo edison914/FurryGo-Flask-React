@@ -12,20 +12,20 @@ categorys = [
 
 
 def seed_spots():
-    rest1 = Spot(
-        user_id=1,
-        category="Restaurants",
-        address="1617 Washington Plaza N",
-        city="Reston",
-        state="VA",
-        zip_code=20190,
-        lat=38.969623289959394,
-        lng=-77.34081517627104,
-        name="Kalypso's Sports Tavern",
-        description="Voted 'Best Al Fresco Dining in Northern Virginia' by Northern Virginia Magazine in 2021 and 2022, Kalypso's Sports Tavern offers waterfront seating adjacent to serene Lake Anne. The menu is heavily inspired by Mediterranean traditions with hummus, tzatziki, spanakopita, falafel, gyro, and more. Yum!",
-        website="https://www.kalypsossportstavern.com/",
-        phone_number=7037070660,
-    )
+#     rest1 = Spot(
+#         user_id=1,
+#         category="Restaurants",
+#         address="1617 Washington Plaza N",
+#         city="Reston",
+#         state="VA",
+#         zip_code=20190,
+#         lat=38.969623289959394,
+#         lng=-77.34081517627104,
+#         name="Kalypso's Sports Tavern",
+#         description="Voted 'Best Al Fresco Dining in Northern Virginia' by Northern Virginia Magazine in 2021 and 2022, Kalypso's Sports Tavern offers waterfront seating adjacent to serene Lake Anne. The menu is heavily inspired by Mediterranean traditions with hummus, tzatziki, spanakopita, falafel, gyro, and more. Yum!",
+#         website="https://www.kalypsossportstavern.com/",
+#         phone_number=7037070660,
+#     )
     # rest2 = Spot(
     #     user_id=2,
     #     category="Restaurants",
@@ -154,7 +154,7 @@ def seed_spots():
     #     website="https://www.hilton.com/en/hotels/iadfhgi-hilton-garden-inn-fairfax/?SEO_id=GMB-AMER-GI-IADFHGI&y_source=1_MjA4Mzk0NC03MTUtbG9jYXRpb24ud2Vic2l0ZQ%3D%3D",
     #     phone_number=7033857774
     # )
-    db.session.add(rest1)
+    # db.session.add(rest1)
     # db.session.add(rest2)
     # db.session.add(rest3)
     # db.session.add(park1)
