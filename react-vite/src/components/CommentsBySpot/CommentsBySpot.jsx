@@ -5,11 +5,13 @@ import { getCommentsThunk } from "../../redux/comments";
 import "./CommentsBySpot.css";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import DeleteAComment from "../DeleteACommentModal/DeleteACommentModal";
+import EditCommentModal from "../EditACommentModal/EditACommentModal";
 
 const CommentsBySpot = () => {
   const { spotId } = useParams();
   const allComments = useSelector((state) => state.comments.allComments);
   const currentUser = useSelector((state) => state.session.user);
+  const spot = useSelector((state) => state.spots.byId[spotId])
   //   const spot = useSelector((state) => state.spots.byId[spotId]);
   const dispatch = useDispatch();
   console.log(allComments);
@@ -39,6 +41,12 @@ const CommentsBySpot = () => {
                   <OpenModalButton
                     modalComponent={<DeleteAComment commentId={comment.id} />}
                     buttonText="Delete"
+                  />
+                </div>
+                <div className="commentEditButton">
+                  <OpenModalButton
+                    modalComponent={<EditCommentModal spot={spot} commentId={comment.id} />}
+                    buttonText="Edit"
                   />
                 </div>
               </div>

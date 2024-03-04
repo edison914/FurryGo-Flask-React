@@ -71,14 +71,11 @@ export const postCommentThunk = (formData, spotId) => async (dispatch) => {
 };
 //thunk action to edit comment
 export const editCommentThunk =
-  (comment, commentId, spotId) => async (dispatch) => {
+  (formData, commentId, spotId) => async (dispatch) => {
     try {
       const res = await fetch(`/api/comments/${commentId}`, {
         method: "PUT",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          comment_text: comment.commentText,
-        }),
+        body: formData,
       });
       if (res.ok) {
         const data = await res.json();

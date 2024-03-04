@@ -33,8 +33,10 @@ def update_comment(comment_id):
         data = form.data
 
         current_comment.comment_text = data["comment_text"]
+        # print("comment text", current_comment.comment_text)
+        # print("edit image?", data["image_url"])
 
-        if form.image_url.data:
+        if data['image_url']:
             image = data["image_url"]
             image.filename = get_unique_filename(image.filename)
             upload_image = upload_file_to_s3(image)

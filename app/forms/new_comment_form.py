@@ -13,7 +13,7 @@ class NewCommentForm(FlaskForm):
         if field.data and field.data.endswith(' '):
             raise ValidationError('Comment should not end with whitespace.')
 
-    comment_text = TextAreaField('Comment', validators=[DataRequired(), Length(max=255), no_white_space])
+    comment_text = TextAreaField('Comment', validators=[DataRequired(), Length(max=255, min=10), no_white_space])
 
     image_url = FileField(
         "Image URL1",
