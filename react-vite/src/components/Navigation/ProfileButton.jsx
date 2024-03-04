@@ -1,12 +1,11 @@
 import { useState, useEffect, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { FaUserCircle } from 'react-icons/fa';
 import { thunkLogout } from "../../redux/session";
 import OpenModalMenuItem from "./OpenModalMenuItem";
 import LoginFormModal from "../LoginFormModal";
 import SignupFormModal from "../SignupFormModal";
 import { useNavigate } from "react-router-dom";
-import { getCurrentUserSpotsThunk } from "../../redux/spots";
+import "./Navigation.css"
 
 function ProfileButton() {
   const dispatch = useDispatch();
@@ -46,28 +45,29 @@ function ProfileButton() {
 
   return (
     <>
-      <button onClick={toggleMenu}>
-        <FaUserCircle />
+      <button className="navbar-profile-button" onClick={toggleMenu}>
+      <i className="fa-solid fa-bars"></i>
       </button>
       {showMenu && (
         <ul className={"profile-dropdown"} ref={ulRef}>
           {user ? (
             <>
-              <li>{user.username}</li>
-              <li>{user.email}</li>
-              <li>
-                <button onClick={logout}>Log Out</button>
-              </li>
+              <div className="profile-dropdown-email">{user.email}</div>
+
+<button  onClick={logout}>Log Out</button>
+
             </>
           ) : (
             <>
               <OpenModalMenuItem
+                className="profile-dropdown-login"
                 itemText="Log In"
                 onItemClick={closeMenu}
                 modalComponent={<LoginFormModal />}
               />
               <OpenModalMenuItem
                 itemText="Sign Up"
+                className="profile-dropdown-signup"
                 onItemClick={closeMenu}
                 modalComponent={<SignupFormModal />}
               />

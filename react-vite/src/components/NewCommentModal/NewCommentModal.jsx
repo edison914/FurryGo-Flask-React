@@ -1,12 +1,12 @@
-import { useDispatch} from "react-redux";
-import { useState} from "react";
+import { useDispatch } from "react-redux";
+import { useState } from "react";
 import "./NewCommentModal.css";
 import { postCommentThunk } from "../../redux/comments";
 import { useModal } from "../../context/Modal";
 
-const NewCommentModal = ({spot}) => {
-  const spotId = Number(spot.id)
-  console.log(spotId)
+const NewCommentModal = ({ spot }) => {
+  const spotId = Number(spot.id);
+  console.log(spotId);
 
   const dispatch = useDispatch();
   const { closeModal } = useModal();
@@ -61,7 +61,9 @@ const NewCommentModal = ({spot}) => {
           placeholder="Write a comment"
           rows="5"
         ></textarea>
-
+        {validationErrors && (
+          <p className="reviewFormError">{validationErrors.comment_text}</p>
+        )}
         <label>
           Optional: upload image
           <input
@@ -91,9 +93,6 @@ const NewCommentModal = ({spot}) => {
           Cancel
         </button>
       </form>
-      {validationErrors && (
-        <p className="reviewFormError">{validationErrors.comment_text}</p>
-      )}
     </div>
   );
 };

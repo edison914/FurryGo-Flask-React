@@ -18,15 +18,15 @@ const CurrentUserSpots = () => {
     dispatch(getCurrentUserSpotsThunk(userId));
   }, [dispatch, userId]);
 
-  if (!spots.length)
-    return (
-      <div>
-        <h1>You do not have any place. Create one now!</h1>
-        <button>
-          <NavLink to="/spots/new">Create a new place</NavLink>
-        </button>
-      </div>
-    );
+  if (!spots.length) return (
+    <div>
+    <h1>You do not have any place. Create one now!</h1>
+<button>
+  <NavLink to="/spots/new">Create a new place</NavLink>
+</button>
+</div>
+  )
+
 
     if (!userId) return (
       <div>

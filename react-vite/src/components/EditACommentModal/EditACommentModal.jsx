@@ -61,7 +61,9 @@ const EditACommentModal = ({spot, commentId}) => {
           placeholder="Write a comment"
           rows="5"
         ></textarea>
-
+           {validationErrors && (
+        <p className="reviewFormError">{validationErrors.comment_text}</p>
+      )}
         <label>
           Optional: upload image
           <input
@@ -91,9 +93,7 @@ const EditACommentModal = ({spot, commentId}) => {
           Cancel
         </button>
       </form>
-      {validationErrors && (
-        <p className="reviewFormError">{validationErrors.comment_text}</p>
-      )}
+
     </div>
   );
 };

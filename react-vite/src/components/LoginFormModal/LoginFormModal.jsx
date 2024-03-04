@@ -29,7 +29,7 @@ function LoginFormModal() {
   };
 
   return (
-    <>
+    <div className="profile-dropdown-login" >
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -60,7 +60,7 @@ function LoginFormModal() {
           </button>
         <button type="submit">Log In</button>
       </form>
-    </>
+    </div>
   );
 }
 
