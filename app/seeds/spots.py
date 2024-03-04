@@ -24,7 +24,7 @@ def seed_spots():
         name="Kalypso's Sports Tavern",
         description="Voted 'Best Al Fresco Dining in Northern Virginia' by Northern Virginia Magazine in 2021 and 2022, Kalypso's Sports Tavern offers waterfront seating adjacent to serene Lake Anne. The menu is heavily inspired by Mediterranean traditions with hummus, tzatziki, spanakopita, falafel, gyro, and more. Yum!",
         website="https://www.kalypsossportstavern.com/",
-        phone_number=7037070660,
+        phone_number="7037070660",
     )
     # rest2 = Spot(
     #     user_id=2,

@@ -33,7 +33,7 @@ class Spot(db.Model):
     name = db.Column(db.String(100), nullable=False)
     description = db.Column(db.String(5000), nullable=False)
     website = db.Column(db.String(200), nullable=True)
-    phone_number = db.Column(db.Integer, nullable=True)
+    phone_number = db.Column(db.String(10), nullable=True)
     created_at = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
     updated_at = db.Column(
         db.DateTime, nullable=False, default=datetime.utcnow, onupdate=datetime.utcnow
