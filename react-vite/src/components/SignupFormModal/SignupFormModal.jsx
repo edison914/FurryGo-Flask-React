@@ -40,7 +40,7 @@ function SignupFormModal() {
 
   return (
     <div className="profile-dropdown-signup modalContainer">
-      <h1>Sign Up</h1>
+      <h2>Sign Up</h2>
       {errors.server && <p>{errors.server}</p>}
       <form onSubmit={handleSubmit}>
         <label>

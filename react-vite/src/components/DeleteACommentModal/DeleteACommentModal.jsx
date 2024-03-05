@@ -28,7 +28,7 @@ const DeleteAComment = ({ commentId }) => {
 
   return (
     <div className="deleteComment modalContainer">
-      <h1>Confirm Delete</h1>
+      <h2>Confirm Delete</h2>
 
       {errors.message && <p className="">{errors.message}</p>}
 

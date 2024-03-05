@@ -13,7 +13,7 @@ const SplashPage = () => {
 
   return (
     <div className="content-container">
-      <h1>All Places</h1>
+      <h2>All Places</h2>
       <div className="spots-container">
         {spots?.map((spot) => (
           <div key={spot.id} className="spots-container-div">

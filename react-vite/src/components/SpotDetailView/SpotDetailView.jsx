@@ -27,73 +27,73 @@ const SpotDetailView = () => {
 
   return (
     <div className="content-container">
-      <div className="spot-detail-title-container">
-        <h2>
-          {currentSpot?.category} - {currentSpot?.name}
-        </h2>
-      </div>
-
-      <div className="spot-detail-picture-container">
-        <img
-          src={currentSpot?.spot_images[0].image_url}
-          title={currentSpot?.name}
-        ></img>
-        <img
-          src={currentSpot?.spot_images[1].image_url}
-          title={currentSpot?.name}
-        ></img>
-      </div>
-      <div className="spot-detail-container">
-        <div className="spot-detail-context-container">
-          <div>Addresss: {currentSpot?.address}</div>
-          <div>
-            {currentSpot?.city}, {currentSpot?.state}
-          </div>
-          <div>Zip Code: {currentSpot?.zip_code}</div>
-          <div>Description: {currentSpot?.description}</div>
-          <div>
-            Website:{" "}
-            <a href={currentSpot?.website} target="_blank" rel="noreferrer">
-              {currentSpot?.website}
-            </a>
-          </div>
-          <div>
-            Phone:{" "}
-            <a
-              href={`tel:${currentSpot?.phone_number}`}
-              target="_blank"
-              rel="noreferrer"
-            >
-              {currentSpot?.phone_number}
-            </a>
-          </div>
+      <div className="spot-detail-wrapper">
+        <div className="spot-detail-title-container">
+          <h2>
+            {currentSpot?.category} - {currentSpot?.name}
+          </h2>
         </div>
-        <div className="spot-detail-buttons-container">
-          {currentUser ? (
-            <div className="new-comment-button-container">
+
+        <div className="spot-detail-picture-container">
+          <img
+            src={currentSpot?.spot_images[0].image_url}
+            title={currentSpot?.name}
+          ></img>
+          <img
+            src={currentSpot?.spot_images[1].image_url}
+            title={currentSpot?.name}
+          ></img>
+        </div>
+        <div className="spot-detail-container">
+          <div className="spot-detail-context-container">
+            <div>Addresss: {currentSpot?.address}</div>
+            <div>
+              {currentSpot?.city}, {currentSpot?.state}
+            </div>
+            <div>Zip Code: {currentSpot?.zip_code}</div>
+            <div>Description: {currentSpot?.description}</div>
+            <div>
+              Website:{" "}
+              <a href={currentSpot?.website} target="_blank" rel="noreferrer">
+                {currentSpot?.website}
+              </a>
+            </div>
+            <div>
+              Phone:{" "}
+              <a
+                href={`tel:${currentSpot?.phone_number}`}
+                target="_blank"
+                rel="noreferrer"
+              >
+                {currentSpot?.phone_number}
+              </a>
+            </div>
+          </div>
+          <div className="spot-detail-buttons-container">
+            {currentUser ? (
+              <div className="new-comment-button-container">
+                <OpenModalButton
+                  modalComponent={<NewCommentModal spot={currentSpot} />}
+                  buttonText="Add Your Comment"
+                />
+              </div>
+            ) : (
               <OpenModalButton
-                modalComponent={<NewCommentModal spot={currentSpot} />}
+                modalComponent={<LoginFormModal spot={currentSpot} />}
                 buttonText="Add Your Comment"
               />
-            </div>
-          ) : (
-            <OpenModalButton
-              modalComponent={<LoginFormModal spot={currentSpot} />}
-              buttonText="Add Your Comment"
-            />
-          )}
+            )}
+          </div>
         </div>
-      </div>
 
-      {/* <div>Average Bone Rating: {currentSpot?.average_rating ? currentSpot.average_rating `Bones` : "No Rating Yet"}</div> */}
+        {/* <div>Average Bone Rating: {currentSpot?.average_rating ? currentSpot.average_rating `Bones` : "No Rating Yet"}</div> */}
 
-      <div className="spot-detail-bottom-half-container">
-        {/* <div className="commentsContainer"> */}
-        <CommentsBySpot />
-        {/* </div> */}
+        <div className="spot-detail-bottom-half-container">
+          {/* <div className="commentsContainer"> */}
+          <CommentsBySpot />
+          {/* </div> */}
 
-        <div className="mapContainer">
-
+          <div className="mapContainer"></div>
         </div>
       </div>
     </div>

@@ -69,7 +69,7 @@ const NewSpotForm = () => {
   if (!user)
     return (
       <div className="content-container">
-        <h1>Forgot to sign in</h1>
+        <h2>Forgot to sign in</h2>
         <OpenModalButton
           modalComponent={<LoginFormModal />}
           buttonText="Sign in here"
@@ -84,7 +84,7 @@ const NewSpotForm = () => {
         className="formContainer"
         encType="multipart/form-data"
       >
-        <h1>Create a new Place</h1>
+        <h2>Create a new Place</h2>
         <div className="form-subcontainer">
           <label>
             Place Name

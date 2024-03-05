@@ -79,7 +79,7 @@ const EditSpotForm = () => {
   if (!userId)
     return (
       <div>
-        <h1>Forgot to sign in</h1>
+        <h2>Forgot to sign in</h2>
         <OpenModalButton
           modalComponent={<LoginFormModal />}
           buttonText="Sign in here"
@@ -94,7 +94,7 @@ const EditSpotForm = () => {
         className="formContainer"
         encType="multipart/form-data"
       >
-        <h1>Edit {spot ? spot.name : `Spot`}</h1>
+        <h2>Edit {spot ? spot.name : `Spot`}</h2>
         <div className="form-subcontainer">
           <label>
             Place Name

@@ -33,7 +33,7 @@ function LoginFormModal() {
 
   return (
     <div className="profile-dropdown-login modalContainer" >
-      <h1>Log In</h1>
+      <h2>Log In</h2>
       <form onSubmit={handleSubmit}>
         <label>
           Email
