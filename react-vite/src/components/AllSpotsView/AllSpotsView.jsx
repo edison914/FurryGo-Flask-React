@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { getSpotsThunk } from "../../redux/spots";
 import SpotSimpleView from "../SpotSimpleView/SpotSimpleView";
 import "./SplashPage.css"
-const SplashPage = () => {
+const AllSpotsView = () => {
   const dispatch = useDispatch();
   const spots = useSelector((state) => state.spots?.allSpots);
   // console.log(spots)
@@ -12,11 +12,11 @@ const SplashPage = () => {
   }, [dispatch]);
 
   return (
-    <div className="content-container">
+    <div>
       <h1>All Places</h1>
-      <div className="spots-container">
+      <div className="Spots-container">
         {spots?.map((spot) => (
-          <div key={spot.id} className="spots-container-div">
+          <div key={spot.id} className="Spots-container-div">
             <SpotSimpleView spot={spot} />
           </div>
         ))}
@@ -37,4 +37,4 @@ const SplashPage = () => {
   );
 };
 
-export default SplashPage;
+export default AllSpotsView;

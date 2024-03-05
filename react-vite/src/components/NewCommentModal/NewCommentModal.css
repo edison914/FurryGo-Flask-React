@@ -1,0 +1,16 @@
+.post-comment-text-area-input {
+    width: 500px;
+    resize: none;
+    border: 2px solid #5c5c5c;
+    border-radius: 5px;
+}
+
+.comment-form textarea::placeholder {
+    color: #5c5c5c;
+    font-style: italic;
+}
+
+.comment-form textarea:focus {
+    outline: none;
+    border-color: #387bcd;
+}

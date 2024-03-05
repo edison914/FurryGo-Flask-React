@@ -32,7 +32,7 @@ function LoginFormModal() {
   };
 
   return (
-    <div className="profile-dropdown-login" >
+    <div className="profile-dropdown-login modalContainer" >
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <label>
@@ -42,9 +42,10 @@ function LoginFormModal() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            className="login-email-input"
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className="error">{errors.email}</p>}
         <label>
           Password
           <input
@@ -54,8 +55,8 @@ function LoginFormModal() {
             required
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
-        <button type='submit' disabled={isSubmitted} onClick={() => {
+        {errors.password && <p className="error">{errors.password}</p>}
+        <button className="submit-button" type='submit' disabled={isSubmitted} onClick={() => {
             setEmail('demo@aa.io')
             setPassword('password')
 

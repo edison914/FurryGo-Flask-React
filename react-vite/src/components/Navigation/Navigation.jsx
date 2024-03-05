@@ -9,13 +9,17 @@ function Navigation() {
   const currentUser = useSelector((state) => state.session.user);
 
   return (
-    <div className="navbarContainer">
+    <div className="navbar-container">
+
+      <NavLink className="navbar-logo container" to="/">
+          <img className="navbar-logo" src="/FurryGo.png" alt="Home" />
+        </NavLink>
 
         <NavLink className="navbarHome" to="/">Home</NavLink>
 
 
       <NavLink className="navbarNewPlace" to="/spots/new">
-        Create Place
+        Create
       </NavLink>
 
         {userId && (

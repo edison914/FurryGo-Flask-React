@@ -39,7 +39,7 @@ function SignupFormModal() {
   };
 
   return (
-    <>
+    <div className="profile-dropdown-signup modalContainer">
       <h1>Sign Up</h1>
       {errors.server && <p>{errors.server}</p>}
       <form onSubmit={handleSubmit}>
@@ -50,9 +50,10 @@ function SignupFormModal() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
+            className="signup-email-input"
           />
         </label>
-        {errors.email && <p>{errors.email}</p>}
+        {errors.email && <p className="error">{errors.email}</p>}
         <label>
           Nickname
           <input
@@ -60,9 +61,10 @@ function SignupFormModal() {
             value={nickname}
             onChange={(e) => setNickname(e.target.value)}
             required
+            className="signup-nickname-input"
           />
         </label>
-        {errors.nickname && <p>{errors.nickname}</p>}
+        {errors.nickname && <p className="error">{errors.nickname}</p>}
         <label>
           Password
           <input
@@ -70,9 +72,10 @@ function SignupFormModal() {
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
+            className="signup-password-input"
           />
         </label>
-        {errors.password && <p>{errors.password}</p>}
+        {errors.password && <p className="error">{errors.password}</p>}
         <label>
           Confirm Password
           <input
@@ -80,12 +83,13 @@ function SignupFormModal() {
             value={confirmPassword}
             onChange={(e) => setConfirmPassword(e.target.value)}
             required
+            className="signup-confirm-password-input"
           />
         </label>
-        {errors.confirmPassword && <p>{errors.confirmPassword}</p>}
+        {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
         <button type="submit">Sign Up</button>
       </form>
-    </>
+    </div>
   );
 }
 

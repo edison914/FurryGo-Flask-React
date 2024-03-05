@@ -1,12 +1,12 @@
-import { useDispatch, useSelector} from "react-redux";
-import { useState} from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import "./EditACommentModal.css";
-import { editCommentThunk} from "../../redux/comments";
+import { editCommentThunk } from "../../redux/comments";
 import { useModal } from "../../context/Modal";
 
-const EditACommentModal = ({spot, commentId}) => {
-  const spotId = Number(spot.id)
-  const currentComment = useSelector((state) => state.comments.byId[commentId])
+const EditACommentModal = ({ spot, commentId }) => {
+  const spotId = Number(spot.id);
+  const currentComment = useSelector((state) => state.comments.byId[commentId]);
 
   const dispatch = useDispatch();
   const { closeModal } = useModal();
@@ -46,38 +46,36 @@ const EditACommentModal = ({spot, commentId}) => {
   };
 
   return (
-    <div>
+    <div className="comment-form modalContainer">
+      <h1>Edit your comment</h1>
       <form
         onSubmit={handleSubmit}
-        className="formContainer"
         encType="multipart/form-data"
       >
-        <h1>Edit your comment</h1>
         <textarea
-          className="postCommentFormInput"
+          className="post-comment-text-area-input"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           name="comment"
           placeholder="Write a comment"
           rows="5"
         ></textarea>
-           {validationErrors && (
-        <p className="reviewFormError">{validationErrors.comment_text}</p>
-      )}
-        <label>
+        {validationErrors && (
+          <p className="error">{validationErrors.comment_text}</p>
+        )}
+        <label className="label-upload">
           Optional: upload image
           <input
             type="file"
             accept="image/*"
             onChange={(e) => setImage(e.target.files[0])}
           />
-          {validationErrors.image_url && hasSubmitted && (
-            <p className="error">{validationErrors.image_url}</p>
-          )}
         </label>
-
+        {validationErrors.image_url && hasSubmitted && (
+          <p className="error">{validationErrors.image_url}</p>
+        )}
         <button
-          className="postCommentSubmitButton"
+          className="submit-button"
           type="button"
           onClick={handleSubmit}
           disabled={isButtonDisabled}
@@ -87,13 +85,12 @@ const EditACommentModal = ({spot, commentId}) => {
 
         <button
           type="button"
-          className="newSpotSubmitButton"
+          className="cancel-button"
           onClick={handleCancelSubmit}
         >
           Cancel
         </button>
       </form>
-
     </div>
   );
 };
