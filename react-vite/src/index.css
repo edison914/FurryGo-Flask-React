@@ -17,7 +17,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    min-height: 100vh;
+    /* this will the content to take the entire view. push the footer to the bottom */
 }
 
 .formContainer {
@@ -173,7 +174,6 @@ footer {
     display: flex;
     flex-direction: column;
     align-items: center;
-
 }
 
 footer > div > a {

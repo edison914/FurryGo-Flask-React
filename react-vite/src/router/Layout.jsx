@@ -18,8 +18,8 @@ export default function Layout() {
       <ModalProvider>
         <Navigation />
         {isLoaded && <Outlet />}
-        <Modal />
         <FooterView />
+        <Modal />
       </ModalProvider>
     </>
   );
