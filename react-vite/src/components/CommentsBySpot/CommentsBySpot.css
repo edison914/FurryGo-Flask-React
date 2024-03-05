@@ -1,18 +1,26 @@
-.commentPicture {
+.comment-picture {
     width: 200px;
     height: 150px;
+    margin-right: 20px;
+    transition: all .3s ease-in;
+    border-radius: 2px;
 }
 
+.comment-picture:hover {
+    transform: scale(1.1)
+}
 .commentsContainer {
     display: flex;
     flex-direction: column;
+
 }
-.commentViewContainer{
+.comment-view-Container{
     display: flex;
     margin: 10px;
-    border: 1px black solid;
-    width: 42%;
+    border-bottom: 1px #a4a2a2 solid ;
     padding: 10px;
+    min-width: 630px;
+    /* max-width: 560px; */
 }
 
 .commentText {

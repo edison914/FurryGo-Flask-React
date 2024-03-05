@@ -28,6 +28,7 @@
 .spot-detail-context-container {
     width: 80%;
     margin: 10px;
+    border-bottom: 1px #a4a2a2 solid ;
 }
 
 .spot-detail-context-container div {
@@ -41,13 +42,16 @@
 
 .spot-detail-buttons-container {
     width: 20%;
+    min-width: 240px;
     display: flex;
     flex-direction: column;
     align-items: center;
     margin: 10px;
+    border: 1px #a4a2a2 solid ;
+    border-radius: 5px;
 }
 
-.new-comment-button-container button{
+.spot-detail-buttons-container button{
     display: block;
     width: 200px;
     height: 40px;
@@ -61,6 +65,18 @@
 }
 
 
-.new-comment-button-container button:hover {
+.spot-detail-button-container button:hover {
     background-color: #387bcd;;
+}
+
+
+.spot-detail-bottom-half-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    width: 100%;
+}
+
+.commentsContainer {
+    width: 55%;
 }

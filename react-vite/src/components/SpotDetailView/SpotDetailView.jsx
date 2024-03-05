@@ -49,7 +49,7 @@ const SpotDetailView = () => {
           <div>
             {currentSpot?.city}, {currentSpot?.state}
           </div>
-          <div>Zipcode: {currentSpot?.zip_code}</div>
+          <div>Zip Code: {currentSpot?.zip_code}</div>
           <div>Description: {currentSpot?.description}</div>
           <div>
             Website:{" "}
@@ -87,8 +87,14 @@ const SpotDetailView = () => {
 
       {/* <div>Average Bone Rating: {currentSpot?.average_rating ? currentSpot.average_rating `Bones` : "No Rating Yet"}</div> */}
 
-      <div>
+      <div className="spot-detail-bottom-half-container">
+        {/* <div className="commentsContainer"> */}
         <CommentsBySpot />
+        {/* </div> */}
+
+        <div className="mapContainer">
+
+        </div>
       </div>
     </div>
   );
