@@ -10,6 +10,8 @@ body {
     margin-top: 0px;
     background-color: #E0E5E9;
     color:#5c5c5c;
+    max-width: 1600px;
+    min-width: 1000px;
   }
 
 .content-container {
@@ -17,7 +19,8 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    justify-content: center;
+    min-height: 90vh;
+    /* this will the content to take the entire view. push the footer to the bottom */
 }
 
 .formContainer {
@@ -142,7 +145,7 @@ body {
     width: 490px;
 }
 
-.formContainer button {
+.formContainer button, .content-container button {
     display: block;
     width: 200px;
     height: 40px;
@@ -154,7 +157,7 @@ body {
     cursor: pointer;
 }
 
-.formContainer button:hover {
+.formContainer button:hover, .content-container button:hover {
     background-color: #387bcd;;
 }
 .category {
@@ -169,14 +172,43 @@ body {
 
 
 footer {
-    margin-top: 50px;
     display: flex;
     flex-direction: column;
     align-items: center;
-
+    margin-top: 50px;
 }
 
 footer > div > a {
     text-decoration: none;
     color: #5c5c5c;
+}
+
+
+.formContainer button:disabled,
+.modalContainer button:disabled {
+    background-color: #E0E5E9;
+    cursor: not-allowed;
+    color: black;
+}
+
+.edit-comment-button-container {
+    display: flex;
+
+}
+
+.edit-comment-button button{
+    display: block;
+    width: 100px;
+    padding: 10px;
+    background-color: #0A62D0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin: 10px 10px 10px 0px;
+}
+
+
+.edit-comment-button button:hover {
+    background-color: #387bcd;;
 }

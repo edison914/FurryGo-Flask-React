@@ -1,4 +1,4 @@
-import { useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import "./SpotDetailView.css";
@@ -14,21 +14,26 @@ const SpotDetailView = () => {
   const { spotId } = useParams();
   const currentSpot = useSelector((state) => state.spots.byId[spotId]);
   const currentUser = useSelector((state) => state.session.user);
-  const [isLoaded, setIsLoaded] = useState(false)
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     dispatch(getSpotsThunk());
-    setIsLoaded(true)
+    setIsLoaded(true);
   }, [dispatch]);
 
   if (!currentSpot && isLoaded) {
-    return <NotFoundPage />
+    return <NotFoundPage />;
   }
-
 
   return (
     <div className="content-container">
-      <div className="spotDetailViewPictureContainer">
+      <div className="spot-detail-title-container">
+        <h2>
+          {currentSpot?.category} - {currentSpot?.name}
+        </h2>
+      </div>
+
+      <div className="spot-detail-picture-container">
         <img
           src={currentSpot?.spot_images[0].image_url}
           title={currentSpot?.name}
@@ -38,34 +43,58 @@ const SpotDetailView = () => {
           title={currentSpot?.name}
         ></img>
       </div>
-
-      <h3>{currentSpot?.category}</h3>
-      <h3>{currentSpot?.name}</h3>
-      {currentUser ? (
-        <div className="newCommentModalContainer">
-          <OpenModalButton
-            modalComponent={<NewCommentModal spot={currentSpot} />}
-            buttonText="Add Your Comment"
-          />
+      <div className="spot-detail-container">
+        <div className="spot-detail-context-container">
+          <div>Addresss: {currentSpot?.address}</div>
+          <div>
+            {currentSpot?.city}, {currentSpot?.state}
+          </div>
+          <div>Zip Code: {currentSpot?.zip_code}</div>
+          <div>Description: {currentSpot?.description}</div>
+          <div>
+            Website:{" "}
+            <a href={currentSpot?.website} target="_blank" rel="noreferrer">
+              {currentSpot?.website}
+            </a>
+          </div>
+          <div>
+            Phone:{" "}
+            <a
+              href={`tel:${currentSpot?.phone_number}`}
+              target="_blank"
+              rel="noreferrer"
+            >
+              {currentSpot?.phone_number}
+            </a>
+          </div>
         </div>
-      ) : (
-        <OpenModalButton
-          modalComponent={<LoginFormModal spot={currentSpot} />}
-          buttonText="Add Your Comment"
-        />
-      )}
-      <div>Addresss: {currentSpot?.address}</div>
-      <div>
-        {currentSpot?.city}, {currentSpot?.state}
+        <div className="spot-detail-buttons-container">
+          {currentUser ? (
+            <div className="new-comment-button-container">
+              <OpenModalButton
+                modalComponent={<NewCommentModal spot={currentSpot} />}
+                buttonText="Add Your Comment"
+              />
+            </div>
+          ) : (
+            <OpenModalButton
+              modalComponent={<LoginFormModal spot={currentSpot} />}
+              buttonText="Add Your Comment"
+            />
+          )}
+        </div>
       </div>
-      <div>Zipcode: {currentSpot?.zip_code}</div>
-      <div>{currentSpot?.description}</div>
-      <div>Website: {currentSpot?.website}</div>
-      <div>Phone: {currentSpot?.phone_number}</div>
+
       {/* <div>Average Bone Rating: {currentSpot?.average_rating ? currentSpot.average_rating `Bones` : "No Rating Yet"}</div> */}
 
-      <div>
+      <div className="spot-detail-bottom-half-container">
+        {/* <div className="commentsContainer"> */}
         <CommentsBySpot />
+        {/* </div> */}
+
+        <div className="mapContainer">
+
+        </div>
       </div>
     </div>
   );

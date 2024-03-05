@@ -10,9 +10,11 @@ import EditCommentModal from "../EditACommentModal/EditACommentModal";
 const CommentsBySpot = () => {
   const { spotId } = useParams();
   const allComments = useSelector((state) => state.comments.allComments);
-  allComments.sort((a, b) =>   {const dateA = new Date(a.updated_at);
-  const dateB = new Date(b.updated_at);
-  return dateB - dateA;});
+  allComments.sort((a, b) => {
+    const dateA = new Date(a.updated_at);
+    const dateB = new Date(b.updated_at);
+    return dateB - dateA;
+  });
   // console.log(allComments)
   const currentUser = useSelector((state) => state.session.user);
   const spot = useSelector((state) => state.spots.byId[spotId]);
@@ -35,20 +37,33 @@ const CommentsBySpot = () => {
   return (
     <div className="commentsContainer">
       {allComments?.map((comment) => (
-        <div key={comment.id} className="commentViewContainer">
+        <div key={comment.id} className="comment-view-Container">
+          {comment.image_url !== null && (
+            <div>
+              <NavLink to={comment.image_url} target="_blank">
+                <img
+                  src={comment.image_url}
+                  alt={comment.id}
+                  className="comment-picture"
+                />
+              </NavLink>
+            </div>
+          )}
           <div>
             <div>{comment.user_nickname} says:</div>
             <div className="commentText">{comment.comment_text}</div>
             {currentUser && currentUser.id === comment.user_id && (
-              <div className="commentButtonContainer">
-                <div className="commentDeleteButton">
+              <div className="edit-comment-button-container">
+                <div className="edit-comment-button">
                   <OpenModalButton
+
                     modalComponent={<DeleteAComment commentId={comment.id} />}
                     buttonText="Delete"
                   />
                 </div>
-                <div className="commentEditButton">
+                <div className="edit-comment-button">
                   <OpenModalButton
+
                     modalComponent={
                       <EditCommentModal spot={spot} commentId={comment.id} />
                     }
@@ -58,19 +73,6 @@ const CommentsBySpot = () => {
               </div>
             )}
           </div>
-
-          {comment.image_url !== null && (
-            <div>
-              <div>Comment picture:</div>
-              <NavLink to={comment.image_url} target="_blank">
-                <img
-                  src={comment.image_url}
-                  alt={comment.id}
-                  className="commentPicture"
-                />
-              </NavLink>
-            </div>
-          )}
         </div>
       ))}
     </div>

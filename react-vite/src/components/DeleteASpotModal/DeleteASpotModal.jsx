@@ -41,7 +41,7 @@ const DeleteASpot = ({spotId}) => {
             </p>
 
             <button
-                className='deleteSpotButtonYes'
+                className='delete-button'
                 type='button'
                 onClick={handleConfirmSubmit}
             >
@@ -49,7 +49,7 @@ const DeleteASpot = ({spotId}) => {
             </button>
 
             <button
-                className='deleteSpotButtonNo'
+                className='cancel-button'
                 type='button'
                 onClick={handleCancelSubmit}
             >

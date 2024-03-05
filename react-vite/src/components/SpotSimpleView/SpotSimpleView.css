@@ -8,8 +8,8 @@
     transform: scale(1.03)
 }
 .spot-simple-view-container > img {
-    width: 460px;
-    height: 320px;
+    width: 420px;
+    height: 280px;
     border-radius: 5px;
     border: black;
 }
