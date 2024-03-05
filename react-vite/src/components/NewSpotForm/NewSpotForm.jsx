@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { createSpotThunk } from "../../redux/spots";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import LoginFormModal from "../LoginFormModal/LoginFormModal";
-
+import "./NewSpotForm.css";
 const NewSpotForm = () => {
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -66,110 +66,117 @@ const NewSpotForm = () => {
     navigate(`/`);
   };
 
-  if (!user) return (
-    <div>
-      <h1>Forgot to sign in</h1>
-      <OpenModalButton
-        modalComponent={<LoginFormModal />}
-        buttonText="Sign in here"
-      />
-    </div>
-  );
+  if (!user)
+    return (
+      <div className="content-container">
+        <h1>Forgot to sign in</h1>
+        <OpenModalButton
+          modalComponent={<LoginFormModal />}
+          buttonText="Sign in here"
+        />
+      </div>
+    );
 
   return (
-    <div>
+    <div className="content-container">
       <form
         onSubmit={handleSubmit}
         className="formContainer"
         encType="multipart/form-data"
       >
         <h1>Create a new Place</h1>
-        <label>
-          Place Name
-          <input
-            type="text"
-            placeholder="name"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-          />
-          {validationErrors.name && hasSubmitted && (
-            <p className="error">{validationErrors.name}</p>
-          )}
-        </label>
+        <div className="form-subcontainer">
+          <label>
+            Place Name
+            <input
+              type="text"
+              placeholder="name"
+              value={name}
+              onChange={(e) => setName(e.target.value)}
+            />
+            {validationErrors.name && hasSubmitted && (
+              <p className="error">{validationErrors.name}</p>
+            )}
+          </label>
 
-        <label>
-          Choose A Category
-          <select
-            name="category"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-          >
-            <option value="">--Please choose an option--</option>
-            <option value="Restaurants">Restaurants</option>
-            <option value="Cafes">Cafes</option>
-            <option value="Parks">Parks</option>
-            <option value="Events">Events</option>
-            <option value="Hotels">Hotels</option>
-            <option value="Shops">Shops</option>
-          </select>
-          {validationErrors.category && hasSubmitted && (
-            <p className="error">{validationErrors.category}</p>
-          )}
-        </label>
+          <label>
+            Choose A Category
+            <select
+              className="category"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+            >
+              <option value="">--Please choose an option--</option>
+              <option value="Restaurants">Restaurants</option>
+              <option value="Cafes">Cafes</option>
+              <option value="Parks">Parks</option>
+              <option value="Events">Events</option>
+              <option value="Hotels">Hotels</option>
+              <option value="Shops">Shops</option>
+            </select>
+            {validationErrors.category && hasSubmitted && (
+              <p className="error">{validationErrors.category}</p>
+            )}
+          </label>
+        </div>
+        <div className="form-subcontainer">
+          <label>
+            Address
+            <input
+              type="text"
+              placeholder="address"
+              value={address}
+              onChange={(e) => setAddress(e.target.value)}
+            />
+            {validationErrors.address && hasSubmitted && (
+              <p className="error">{validationErrors.address}</p>
+            )}
+          </label>
 
-        <label>
-          Address
-          <input
-            type="text"
-            placeholder="address"
-            value={address}
-            onChange={(e) => setAddress(e.target.value)}
-          />
-          {validationErrors.address && hasSubmitted && (
-            <p className="error">{validationErrors.address}</p>
-          )}
-        </label>
+          <label>
+            City
+            <input
+              type="text"
+              placeholder="city"
+              value={city}
+              onChange={(e) => setCity(e.target.value)}
+            />
+            {validationErrors.city && hasSubmitted && (
+              <p className="error">{validationErrors.city}</p>
+            )}
+          </label>
+        </div>
 
-        <label>
-          City
-          <input
-            type="text"
-            placeholder="city"
-            value={city}
-            onChange={(e) => setCity(e.target.value)}
-          />
-          {validationErrors.city && hasSubmitted && (
-            <p className="error">{validationErrors.city}</p>
-          )}
-        </label>
+        <div className="form-subcontainer">
+          <label>
+            State
+            <input
+              type="text"
+              placeholder="state"
+              value={state}
+              onChange={(e) => setState(e.target.value)}
+            />
+            {validationErrors.state && hasSubmitted && (
+              <p className="error">{validationErrors.state}</p>
+            )}
+          </label>
 
-        <label>
-          State
-          <input
-            type="text"
-            placeholder="state"
-            value={state}
-            onChange={(e) => setState(e.target.value)}
-          />
-          {validationErrors.state && hasSubmitted && (
-            <p className="error">{validationErrors.state}</p>
-          )}
-        </label>
+          <label>
+            Zip Code
+            <input
+              type="text"
+              placeholder="zip code"
+              value={zipcode}
+              onChange={(e) => setZipcode(e.target.value)}
+            />
+            {validationErrors.zip_code && hasSubmitted && (
+              <p className="error">{validationErrors.zip_code}</p>
+            )}
+          </label>
+        </div>
 
-        <label>
-          Zip Code
-          <input
-            type="text"
-            placeholder="zip code"
-            value={zipcode}
-            onChange={(e) => setZipcode(e.target.value)}
-          />
-          {validationErrors.zip_code && hasSubmitted && (
-            <p className="error">{validationErrors.zip_code}</p>
-          )}
-        </label>
-
-        <label>
+        <div className="form-subcontainer">
+          <label>
           Lat
           <input
             type="text"
@@ -194,8 +201,10 @@ const NewSpotForm = () => {
             <p className="error">{validationErrors.lng}</p>
           )}
         </label>
+        </div>
 
-        <label>
+
+        <label className="form-textarea-container">
           Description
           <textarea
             name="description"
@@ -208,8 +217,8 @@ const NewSpotForm = () => {
             <p className="error">{validationErrors.description}</p>
           )}
         </label>
-
-        <label>
+        <div className="form-subcontainer">
+          <label>
           Website
           <input
             type="text"
@@ -235,8 +244,10 @@ const NewSpotForm = () => {
           )}
         </label>
 
-        <label>
-          Upload an Image1
+        </div>
+
+        <label className="label-upload">
+          Upload Image 1:
           <input
             type="file"
             accept="image/*"
@@ -247,8 +258,8 @@ const NewSpotForm = () => {
           )}
         </label>
 
-        <label>
-          Upload an Image2
+        <label className="label-upload">
+          Upload Image2:
           <input
             type="file"
             accept="image/*"
@@ -259,21 +270,23 @@ const NewSpotForm = () => {
           )}
         </label>
 
-        <button
-          type="submit"
-          className="newSpotSubmitButton"
-          disabled={isButtonDisabled}
-        >
-          Submit
-        </button>
+        <div className="form-subcontainer">
+          <button
+            type="submit"
+            className="new-form-submit submit-button"
+            disabled={isButtonDisabled}
+          >
+            Submit
+          </button>
 
-        <button
-          type="button"
-          className="newSpotSubmitButton"
-          onClick={handleCancelSubmit}
-        >
-          Cancel
-        </button>
+          <button
+            type="button"
+            className="cancel-button"
+            onClick={handleCancelSubmit}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );

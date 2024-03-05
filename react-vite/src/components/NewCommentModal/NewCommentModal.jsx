@@ -46,15 +46,11 @@ const NewCommentModal = ({ spot }) => {
   };
 
   return (
-    <div>
-      <form
-        onSubmit={handleSubmit}
-        className="formContainer"
-        encType="multipart/form-data"
-      >
-        <h1>Create a new comment</h1>
+    <div className="comment-form modalContainer">
+      <h1>Create a new comment</h1>
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <textarea
-          className="postCommentFormInput"
+          className="post-comment-text-area-input"
           value={comment}
           onChange={(e) => setComment(e.target.value)}
           name="comment"
@@ -62,22 +58,21 @@ const NewCommentModal = ({ spot }) => {
           rows="5"
         ></textarea>
         {validationErrors && (
-          <p className="reviewFormError">{validationErrors.comment_text}</p>
+          <p className="error">{validationErrors.comment_text}</p>
         )}
-        <label>
-          Optional: upload image
+        <label className="label-upload">
+          Optional Image:
           <input
             type="file"
             accept="image/*"
             onChange={(e) => setImage(e.target.files[0])}
           />
-          {validationErrors.image_url && hasSubmitted && (
-            <p className="error">{validationErrors.image_url}</p>
-          )}
         </label>
-
+        {validationErrors.image_url && hasSubmitted && (
+          <p className="error">{validationErrors.image_url}</p>
+        )}
         <button
-          className="postCommentSubmitButton"
+          className="submit-button"
           type="button"
           onClick={handleSubmit}
           disabled={isButtonDisabled}
@@ -87,7 +82,7 @@ const NewCommentModal = ({ spot }) => {
 
         <button
           type="button"
-          className="newSpotSubmitButton"
+          className="cancel-button"
           onClick={handleCancelSubmit}
         >
           Cancel

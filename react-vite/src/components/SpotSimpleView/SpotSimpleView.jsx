@@ -7,7 +7,7 @@ const SpotSimpleView = (spot) => {
     // console.log(`current spot`,currentSpot.category[0])
 
     return (
-        <NavLink to={`/spots/${currentSpot.id}`} className='SpotSimpleViewContainer'>
+        <NavLink to={`/spots/${currentSpot.id}`} className='spot-simple-view-container'>
             <img src={currentSpot?.spot_images[0].image_url} title={currentSpot?.name}></img>
             <div>{currentSpot?.category[0].toUpperCase()}{currentSpot?.category.slice(1)}</div>
             <div>{currentSpot?.name}</div>

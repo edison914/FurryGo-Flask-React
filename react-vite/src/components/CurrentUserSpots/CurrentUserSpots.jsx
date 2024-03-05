@@ -6,6 +6,7 @@ import DeleteASpot from "../DeleteASpotModal/DeleteASpotModal";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import { NavLink } from "react-router-dom";
 import LoginFormModal from "../LoginFormModal/LoginFormModal";
+import "./CurrentUserSpots.css"
 
 const CurrentUserSpots = () => {
   const dispatch = useDispatch();
@@ -19,7 +20,7 @@ const CurrentUserSpots = () => {
 
   if (!spots.length)
     return (
-      <div>
+      <div className="content-container">
         <h1>You do not have any place. Create one now!</h1>
         <button>
           <NavLink to="/spots/new">Create a new place</NavLink>
@@ -29,7 +30,7 @@ const CurrentUserSpots = () => {
 
   if (!userId)
     return (
-      <div>
+      <div className="content-container">
         <h1>Forgot to sign in</h1>
         <OpenModalButton
           modalComponent={<LoginFormModal />}
@@ -39,29 +40,25 @@ const CurrentUserSpots = () => {
     );
 
   return (
-    <div>
+    <div className="content-container">
       <h1>My Places</h1>
-      <div className="SpotsContainer">
+      <div className="spots-container">
         {spots?.map((spot) => (
-          <div key={spot.id} className="SpotsContainerDiv">
+          <div key={spot.id} className="spots-container-div">
             <SpotSimpleView spot={spot} />
 
             {userId && userId === spot.user_id && (
-              <div className="SpotDeleteButtonContainer">
-                <div className="SpotDeleteButton">
+              <div className="spot-buttonContainer">
+                <div className="spot-delete-button">
                   <OpenModalButton
                     modalComponent={<DeleteASpot spotId={spot.id} />}
                     buttonText="Delete a place"
                   />
                 </div>
-              </div>
-            )}
 
-            {userId && userId === spot.user_id && (
-              <div className="SpotEditButtonContainer">
-                <div className="SpotEditButton">
+                <div className="spot-edit-button">
                   <button>
-                    <NavLink to={`/spots/${spot.id}/edit`}>
+                    <NavLink className="spot-edit-navlink" to={`/spots/${spot.id}/edit`}>
                       Edit a place
                     </NavLink>
                   </button>

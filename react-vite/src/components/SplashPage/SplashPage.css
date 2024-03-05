@@ -1,9 +1,11 @@
-.splashPageFooter {
+.splash-page-footer {
     display: flex;
     flex-direction: column;
     align-items: center;
+
 }
 
-.SpotsContainer {
-    background-color: #FFB400;
+.splash-page-footer > div > a {
+    text-decoration: none;
+    color: #5c5c5c;
 }

@@ -1,10 +1,27 @@
-.currentUserSpotContainer {
+.spot-buttonContainer {
     display:flex;
     flex-direction: row;
     align-items: center;
-
 }
 
-.currentUserSpotContainer img {
-    width: 200px;
+.spot-edit-button > button, .spot-delete-button > button {
+    display: block;
+    width: 150px;
+    height: 40px;
+    padding: 10px;
+    background-color: #0A62D0;
+    color: white;
+    margin: 10px 10px 10px 0px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.spot-edit-button > button:hover, .spot-delete-button > button:hover{
+    background-color: #387bcd;;
+}
+
+.spot-edit-navlink {
+    text-decoration: none;
+    color: white;
 }

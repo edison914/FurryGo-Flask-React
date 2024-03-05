@@ -1,0 +1,12 @@
+.login-email-input {
+    width: 170px
+}
+
+.profile-dropdown-login {
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
+}
+
+

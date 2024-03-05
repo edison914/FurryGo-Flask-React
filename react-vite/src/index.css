@@ -8,23 +8,159 @@ body {
     margin-left: 0px;
     margin-right: 0px;
     margin-top: 0px;
-    background-color: #EDEFEE;
+    background-color: #E0E5E9;
+    color:#5c5c5c;
   }
 
+.content-container {
+    margin-top: 70px;
+    margin-left: 20px;
+    margin-right: 10px;
+}
 
-/* #root {
-    background-color: #EDEFEE;
-} */
 .formContainer {
     display: flex;
     flex-direction: column;
 }
 
-.SpotsContainer {
+.spots-container {
     display: flex;
     flex-wrap: wrap;
 }
 
-.SpotsContainerDiv {
+.Spots-container-div {
     margin: 10px;
+}
+
+#modal-content {
+    border-radius: 5px;
+}
+
+.modalContainer {
+    padding: 25px;
+    /* width: 500px; */
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.modalContainer label {
+    display: block;
+    height: 30px;
+    margin-bottom: 10px;
+}
+
+.modalContainer input {
+    margin-left: 5px;
+    height: 20px
+}
+
+.modalContainer > h1 {
+    margin-top: 0;
+}
+
+.modalContainer button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #0A62D0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    margin-top: 5px
+}
+
+.modalContainer button:hover {
+    background-color: #387bcd;;
+}
+
+
+.error {
+    color: red;
+    text-align: auto;
+    margin-right: 20px;
+}
+
+.submit-button {
+    margin-bottom: 15px;
+}
+
+
+.label-upload > input {
+    height: 30px;
+}
+
+.label-upload > input:hover {
+    cursor: pointer;
+}
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.formContainer h1{
+    margin-top: 0;
+}
+
+.form-buttonContainer {
+    display: flex;
+    flex-direction: row;
+    width: 600px;
+}
+
+.formContainer label {
+    display: flex;
+    margin-bottom: 10px;
+    align-items: center;
+}
+
+.formContainer textarea {
+    margin-left: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+
+.formContainer input {
+    height: 30px;
+    margin-left: 8px;
+    margin-right: 20px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    resize: none;
+}
+
+.formContainer textarea {
+    height: 100px;
+    width: 490px;
+}
+
+.formContainer button {
+    display: block;
+    width: 200px;
+    height: 40px;
+    padding: 10px;
+    background-color: #0A62D0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.formContainer button:hover {
+    background-color: #387bcd;;
+}
+.category {
+    height: 34px;
+    border: none;
+    border-radius: 2px;
+}
+
+.form-subcontainer {
+    display: flex;
 }

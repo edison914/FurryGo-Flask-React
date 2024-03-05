@@ -27,7 +27,7 @@ const SpotDetailView = () => {
 
 
   return (
-    <div>
+    <div className="content-container">
       <div className="spotDetailViewPictureContainer">
         <img
           src={currentSpot?.spot_images[0].image_url}
