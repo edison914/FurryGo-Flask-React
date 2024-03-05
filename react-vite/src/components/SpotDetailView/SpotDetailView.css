@@ -2,12 +2,13 @@
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    justify-content: center;
     width:100%
 }
 
 .spot-detail-picture-container img{
     width: 50%;
-    height:400px;
+    height: auto;
 }
 
 .spot-detail-title-container {
@@ -79,4 +80,9 @@
 
 .commentsContainer {
     width: 55%;
+}
+
+.spot-detail-wrapper {
+    max-width: 1800px;
+    min-width: 600px;
 }

@@ -47,7 +47,7 @@ const EditACommentModal = ({ spot, commentId }) => {
 
   return (
     <div className="comment-form modalContainer">
-      <h1>Edit your comment</h1>
+      <h2>Edit your comment</h2>
       <form
         onSubmit={handleSubmit}
         encType="multipart/form-data"

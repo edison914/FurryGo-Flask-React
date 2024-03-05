@@ -13,7 +13,7 @@ const AllSpotsView = () => {
 
   return (
     <div>
-      <h1>All Places</h1>
+      <h2>All Places</h2>
       <div className="Spots-container">
         {spots?.map((spot) => (
           <div key={spot.id} className="Spots-container-div">

@@ -21,7 +21,7 @@ const CurrentUserSpots = () => {
   if (!spots.length)
     return (
       <div className="content-container">
-        <h1>You do not have any place. Create one now!</h1>
+        <h2>You do not have any place. Create one now!</h2>
         <button>
           <NavLink to="/spots/new">Create a new place</NavLink>
         </button>
@@ -31,7 +31,7 @@ const CurrentUserSpots = () => {
   if (!userId)
     return (
       <div className="content-container">
-        <h1>Forgot to sign in</h1>
+        <h2>Forgot to sign in</h2>
         <OpenModalButton
           modalComponent={<LoginFormModal />}
           buttonText="Sign in here"
@@ -41,7 +41,7 @@ const CurrentUserSpots = () => {
 
   return (
     <div className="content-container">
-      <h1>My Places</h1>
+      <h2>My Places</h2>
       <div className="spots-container">
         {spots?.map((spot) => (
           <div key={spot.id} className="spots-container-div">

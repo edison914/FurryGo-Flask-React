@@ -10,9 +10,12 @@ body {
     margin-top: 0px;
     background-color: #E0E5E9;
     color:#5c5c5c;
-    max-width: 1600px;
-    min-width: 1000px;
+
   }
+
+#root {
+    margin: 0 auto;
+}
 
 .content-container {
     margin-top: 70px;
@@ -20,7 +23,8 @@ body {
     flex-direction: column;
     align-items: center;
     min-height: 90vh;
-    /* this will the content to take the entire view. push the footer to the bottom */
+    /* this will make the content to take the entire view height. push the footer to the bottom */
+
 }
 
 .formContainer {
@@ -34,6 +38,9 @@ body {
     flex-wrap: wrap;
     align-items: center;
     justify-content: center;
+    max-width: 1800px;
+    min-width: 600px;
+
 }
 
 .Spots-container-div {
