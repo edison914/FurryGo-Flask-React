@@ -180,3 +180,11 @@ footer > div > a {
     text-decoration: none;
     color: #5c5c5c;
 }
+
+
+.formContainer button:disabled,
+.modalContainer button:disabled {
+    background-color: #E0E5E9;
+    cursor: not-allowed;
+    color: black;
+}
