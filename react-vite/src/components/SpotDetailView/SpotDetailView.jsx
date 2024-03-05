@@ -54,11 +54,16 @@ const SpotDetailView = () => {
           buttonText="Add Your Comment"
         />
       )}
-
+      <div>Addresss: {currentSpot?.address}</div>
       <div>
         {currentSpot?.city}, {currentSpot?.state}
       </div>
+      <div>Zipcode: {currentSpot?.zip_code}</div>
       <div>{currentSpot?.description}</div>
+      <div>Website: {currentSpot?.website}</div>
+      <div>Phone: {currentSpot?.phone_number}</div>
+      {/* <div>Average Bone Rating: {currentSpot?.average_rating ? currentSpot.average_rating `Bones` : "No Rating Yet"}</div> */}
+
       <div>
         <CommentsBySpot />
       </div>

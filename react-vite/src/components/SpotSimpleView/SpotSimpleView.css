@@ -1,4 +1,15 @@
 .SpotSimpleViewContainer > img {
     width: 470px;
     height: 350px;
+    border-radius: 5px;
+}
+
+.SpotSimpleViewContainer > div {
+    color: black
+}
+
+
+.SpotSimpleViewContainer {
+    text-decoration: none;
+    background-color: #FFB400;
 }

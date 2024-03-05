@@ -6,7 +6,7 @@ import { useModal } from "../../context/Modal";
 
 const NewCommentModal = ({ spot }) => {
   const spotId = Number(spot.id);
-  console.log(spotId);
+  // console.log(spotId);
 
   const dispatch = useDispatch();
   const { closeModal } = useModal();

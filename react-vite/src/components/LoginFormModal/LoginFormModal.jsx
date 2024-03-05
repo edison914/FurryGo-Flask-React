@@ -10,10 +10,11 @@ function LoginFormModal() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
+  const [isSubmitted, setIsSubmitted] = useState(false)
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
+    setIsSubmitted(true);
     const serverResponse = await dispatch(
       thunkLogin({
         email,
@@ -22,8 +23,10 @@ function LoginFormModal() {
     );
 
     if (serverResponse) {
+      setIsSubmitted(false);
       setErrors(serverResponse);
     } else {
+      setIsSubmitted(false);
       closeModal();
     }
   };
@@ -52,13 +55,14 @@ function LoginFormModal() {
           />
         </label>
         {errors.password && <p>{errors.password}</p>}
-        <button type='submit' onClick={() => {
+        <button type='submit' disabled={isSubmitted} onClick={() => {
             setEmail('demo@aa.io')
             setPassword('password')
+
           }}>
             Demo Login
           </button>
-        <button type="submit">Log In</button>
+        <button type="submit" disabled={isSubmitted}>Log In</button>
       </form>
     </div>
   );

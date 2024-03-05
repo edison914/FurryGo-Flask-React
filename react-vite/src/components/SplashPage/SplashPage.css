@@ -1,0 +1,9 @@
+.splashPageFooter {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.SpotsContainer {
+    background-color: #FFB400;
+}

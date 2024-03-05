@@ -62,11 +62,11 @@ const EditSpotForm = () => {
     formData.append("image_url2", image2);
 
     const res = await dispatch(editSpotThunk(formData, spotId));
-    console.log(`what is the res`, res);
+    // console.log(`what is the res`, res);
     if (!res.id) {
       setValidationErrors(res);
       setIsButtonDisabled(false);
-      console.log(res);
+      // console.log(res);
     } else {
       navigate(`/spots/${res.id}`);
     }
