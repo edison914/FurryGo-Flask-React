@@ -62,7 +62,7 @@ const SpotDetailView = () => {
       <div>{currentSpot?.description}</div>
       <div>Website: {currentSpot?.website}</div>
       <div>Phone: {currentSpot?.phone_number}</div>
-      <div>Average Rating: {currentSpot?.average_rating ? currentSpot.average_rating : "No Rating Yet"}</div>
+      {/* <div>Average Bone Rating: {currentSpot?.average_rating ? currentSpot.average_rating `Bones` : "No Rating Yet"}</div> */}
 
       <div>
         <CommentsBySpot />

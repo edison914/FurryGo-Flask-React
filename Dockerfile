@@ -1,3 +1,15 @@
+FROM --platform=amd64 node:18 as frontend
+
+WORKDIR /react-vite
+
+COPY ./react-vite/package*.json .
+
+RUN npm install
+
+COPY ./react-vite .
+
+RUN npm run build
+
 FROM python:3.9.18-alpine3.18
 
 RUN apk add build-base
@@ -19,7 +31,10 @@ RUN pip install psycopg2
 
 COPY . .
 
-RUN flask db upgrade
-RUN flask seed undo
-RUN flask seed all
-CMD gunicorn app:app
+
+COPY --from=frontend ./dist ./react-vite
+
+EXPOSE 8000
+
+CMD ["bash", "./bin/start.sh"]
+# CMD gunicorn app:app
