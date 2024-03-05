@@ -14,18 +14,23 @@ body {
 
 .content-container {
     margin-top: 70px;
-    margin-left: 20px;
-    margin-right: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 }
 
 .formContainer {
     display: flex;
     flex-direction: column;
+
 }
 
 .spots-container {
     display: flex;
     flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
 }
 
 .Spots-container-div {
@@ -103,9 +108,6 @@ body {
     align-items: flex-start;
 }
 
-.formContainer h1{
-    margin-top: 0;
-}
 
 .form-buttonContainer {
     display: flex;
@@ -163,4 +165,18 @@ body {
 
 .form-subcontainer {
     display: flex;
+}
+
+
+footer {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+}
+
+footer > div > a {
+    text-decoration: none;
+    color: #5c5c5c;
 }
