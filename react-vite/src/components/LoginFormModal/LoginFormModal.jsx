@@ -10,7 +10,11 @@ function LoginFormModal() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  const [isSubmitted, setIsSubmitted] = useState(false);
+
+  // useEffect(() => {
+  //   setErrors({})
+  // }, [email, password])
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -32,7 +36,7 @@ function LoginFormModal() {
   };
 
   return (
-    <div className="profile-dropdown-login modalContainer" >
+    <div className="profile-dropdown-login modalContainer">
       <h2>Log In</h2>
       <form onSubmit={handleSubmit}>
         <label>
@@ -40,7 +44,7 @@ function LoginFormModal() {
           <input
             type="text"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {setEmail(e.target.value), errors.email=''}}
             required
             className="login-email-input"
           />
@@ -51,19 +55,27 @@ function LoginFormModal() {
           <input
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {setPassword(e.target.value), errors.password=''}}
             required
           />
         </label>
         {errors.password && <p className="error">{errors.password}</p>}
-        <button className="submit-button" type='submit' disabled={isSubmitted} onClick={() => {
-            setEmail('demo@aa.io')
-            setPassword('password')
 
-          }}>
-            Demo Login
-          </button>
-        <button type="submit" disabled={isSubmitted}>Log In</button>
+        <button type="submit" disabled={isSubmitted}>
+          Log In
+        </button>
+
+        <button
+          className="demo-button"
+          type="submit"
+          disabled={isSubmitted}
+          onClick={() => {
+            setEmail("demo@aa.io");
+            setPassword("password");
+          }}
+        >
+          Demo Login
+        </button>
       </form>
     </div>
   );
