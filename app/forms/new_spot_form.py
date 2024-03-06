@@ -3,13 +3,11 @@ from flask_wtf.file import FileField, FileAllowed, FileRequired
 from wtforms import (
     StringField,
     TextAreaField,
-    SelectField,
     IntegerField,
     DecimalField,
     URLField,
-    TelField,
 )
-from wtforms.validators import DataRequired, Length, AnyOf, ValidationError, Optional
+from wtforms.validators import DataRequired, Length, AnyOf, ValidationError, Optional, InputRequired
 from app.api.aws_helpers import ALLOWED_IMAGE_EXTENSIONS
 
 extension_joined = ", ".join(ALLOWED_IMAGE_EXTENSIONS)
@@ -73,11 +71,11 @@ class NewSpotForm(FlaskForm):
         ]
     )
 
-    zip_code = IntegerField("Zip Code", validators=[DataRequired(), zip_code_check])
+    zip_code = IntegerField("Zip Code", validators=[InputRequired(), zip_code_check])
 
-    lat = DecimalField("Lat", places=5, rounding=None, validators=[DataRequired()])
+    lat = DecimalField("Lat", places=5, rounding=None, validators=[InputRequired()])
 
-    lng = DecimalField("Lng", places=5, rounding=None, validators=[DataRequired()])
+    lng = DecimalField("Lng", places=5, rounding=None, validators=[InputRequired()])
 
     name = StringField(
         "Name",
@@ -93,7 +91,8 @@ class NewSpotForm(FlaskForm):
         validators=[
             DataRequired(),
             Length(
-                max=5000, message="Description cannot be longer than 5000 characters"
+                min=20,
+                max=5000, message="Description should be between 20 and 5000 characters"
             ),
             no_white_space,
         ]

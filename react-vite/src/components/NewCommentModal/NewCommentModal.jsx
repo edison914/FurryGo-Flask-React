@@ -52,7 +52,7 @@ const NewCommentModal = ({ spot }) => {
         <textarea
           className="post-comment-text-area-input"
           value={comment}
-          onChange={(e) => setComment(e.target.value)}
+          onChange={(e) => {setComment(e.target.value), validationErrors.comment_text = ''}}
           name="comment"
           placeholder="Write a comment"
           rows="5"
@@ -65,7 +65,7 @@ const NewCommentModal = ({ spot }) => {
           <input
             type="file"
             accept="image/*"
-            onChange={(e) => setImage(e.target.files[0])}
+            onChange={(e) => {setImage(e.target.files[0]), validationErrors.image_url = ''}}
           />
         </label>
         {validationErrors.image_url && hasSubmitted && (

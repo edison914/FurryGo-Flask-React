@@ -92,7 +92,9 @@ const NewSpotForm = () => {
               type="text"
               placeholder="name"
               value={name}
-              onChange={(e) => setName(e.target.value)}
+              onChange={(e) => {
+                setName(e.target.value), (validationErrors.name = "");
+              }}
             />
             {validationErrors.name && hasSubmitted && (
               <p className="error">{validationErrors.name}</p>
@@ -104,7 +106,9 @@ const NewSpotForm = () => {
             <select
               className="category"
               value={category}
-              onChange={(e) => setCategory(e.target.value)}
+              onChange={(e) => {
+                setCategory(e.target.value), (validationErrors.category = "");
+              }}
             >
               <option value="">--Please choose an option--</option>
               <option value="Restaurants">Restaurants</option>
@@ -126,7 +130,9 @@ const NewSpotForm = () => {
               type="text"
               placeholder="address"
               value={address}
-              onChange={(e) => setAddress(e.target.value)}
+              onChange={(e) => {
+                setAddress(e.target.value), (validationErrors.address = "");
+              }}
             />
             {validationErrors.address && hasSubmitted && (
               <p className="error">{validationErrors.address}</p>
@@ -139,7 +145,9 @@ const NewSpotForm = () => {
               type="text"
               placeholder="city"
               value={city}
-              onChange={(e) => setCity(e.target.value)}
+              onChange={(e) => {
+                setCity(e.target.value), (validationErrors.city = "");
+              }}
             />
             {validationErrors.city && hasSubmitted && (
               <p className="error">{validationErrors.city}</p>
@@ -154,7 +162,9 @@ const NewSpotForm = () => {
               type="text"
               placeholder="state"
               value={state}
-              onChange={(e) => setState(e.target.value)}
+              onChange={(e) => {
+                setState(e.target.value), (validationErrors.state = "");
+              }}
             />
             {validationErrors.state && hasSubmitted && (
               <p className="error">{validationErrors.state}</p>
@@ -167,7 +177,9 @@ const NewSpotForm = () => {
               type="text"
               placeholder="zip code"
               value={zipcode}
-              onChange={(e) => setZipcode(e.target.value)}
+              onChange={(e) => {
+                setZipcode(e.target.value), (validationErrors.zip_code = "");
+              }}
             />
             {validationErrors.zip_code && hasSubmitted && (
               <p className="error">{validationErrors.zip_code}</p>
@@ -177,32 +189,35 @@ const NewSpotForm = () => {
 
         <div className="form-subcontainer">
           <label>
-          Lat
-          <input
-            type="text"
-            placeholder="lat"
-            value={lat}
-            onChange={(e) => setLat(e.target.value)}
-          />
-          {validationErrors.lat && hasSubmitted && (
-            <p className="error">{validationErrors.lat}</p>
-          )}
-        </label>
+            Lat
+            <input
+              type="text"
+              placeholder="lat"
+              value={lat}
+              onChange={(e) => {
+                setLat(e.target.value), (validationErrors.lat = "");
+              }}
+            />
+            {validationErrors.lat && hasSubmitted && (
+              <p className="error">{validationErrors.lat}</p>
+            )}
+          </label>
 
-        <label>
-          Lng
-          <input
-            type="text"
-            placeholder="lng"
-            value={lng}
-            onChange={(e) => setLng(e.target.value)}
-          />
-          {validationErrors.lng && hasSubmitted && (
-            <p className="error">{validationErrors.lng}</p>
-          )}
-        </label>
+          <label>
+            Lng
+            <input
+              type="text"
+              placeholder="lng"
+              value={lng}
+              onChange={(e) => {
+                setLng(e.target.value), (validationErrors.lng = "");
+              }}
+            />
+            {validationErrors.lng && hasSubmitted && (
+              <p className="error">{validationErrors.lng}</p>
+            )}
+          </label>
         </div>
-
 
         <label className="form-textarea-container">
           Description
@@ -211,7 +226,10 @@ const NewSpotForm = () => {
             rows="5"
             placeholder="Write the place detail here"
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => {
+              setDescription(e.target.value),
+                (validationErrors.description = "");
+            }}
           />
           {validationErrors.description && hasSubmitted && (
             <p className="error">{validationErrors.description}</p>
@@ -219,31 +237,35 @@ const NewSpotForm = () => {
         </label>
         <div className="form-subcontainer">
           <label>
-          Website
-          <input
-            type="text"
-            placeholder="website"
-            value={website}
-            onChange={(e) => setWebsite(e.target.value)}
-          />
-          {validationErrors.website && hasSubmitted && (
-            <p className="error">{validationErrors.website}</p>
-          )}
-        </label>
+            Website
+            <input
+              type="text"
+              placeholder="website"
+              value={website}
+              onChange={(e) => {
+                setWebsite(e.target.value), (validationErrors.website = "");
+              }}
+            />
+            {validationErrors.website && hasSubmitted && (
+              <p className="error">{validationErrors.website}</p>
+            )}
+          </label>
 
-        <label>
-          Phone
-          <input
-            type="text"
-            placeholder="phone number"
-            value={phoneNumber}
-            onChange={(e) => setPhoneNumber(e.target.value)}
-          />
-          {validationErrors.phone_number && hasSubmitted && (
-            <p className="error">{validationErrors.phone_number}</p>
-          )}
-        </label>
-
+          <label>
+            Phone
+            <input
+              type="text"
+              placeholder="phone number"
+              value={phoneNumber}
+              onChange={(e) => {
+                setPhoneNumber(e.target.value),
+                  (validationErrors.phone_number = "");
+              }}
+            />
+            {validationErrors.phone_number && hasSubmitted && (
+              <p className="error">{validationErrors.phone_number}</p>
+            )}
+          </label>
         </div>
 
         <label className="label-upload">
@@ -251,7 +273,7 @@ const NewSpotForm = () => {
           <input
             type="file"
             accept="image/*"
-            onChange={(e) => setImage1(e.target.files[0])}
+            onChange={(e) => {setImage1(e.target.files[0]), validationErrors.image_url1=''}}
           />
           {validationErrors.image_url1 && hasSubmitted && (
             <p className="error">{validationErrors.image_url1}</p>
@@ -263,7 +285,7 @@ const NewSpotForm = () => {
           <input
             type="file"
             accept="image/*"
-            onChange={(e) => setImage2(e.target.files[0])}
+            onChange={(e) => {setImage2(e.target.files[0]), validationErrors.image_url2 = ''}}
           />
           {validationErrors.image_url2 && hasSubmitted && (
             <p className="error">{validationErrors.image_url2}</p>

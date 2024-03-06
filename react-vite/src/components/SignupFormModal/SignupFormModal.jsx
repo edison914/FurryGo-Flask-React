@@ -48,7 +48,9 @@ function SignupFormModal() {
           <input
             type="text"
             value={email}
-            onChange={(e) => setEmail(e.target.value)}
+            onChange={(e) => {
+              setEmail(e.target.value), (errors.email = "");
+            }}
             required
             className="signup-email-input"
           />
@@ -59,7 +61,9 @@ function SignupFormModal() {
           <input
             type="text"
             value={nickname}
-            onChange={(e) => setNickname(e.target.value)}
+            onChange={(e) => {
+              setNickname(e.target.value), (errors.nickname = "");
+            }}
             required
             className="signup-nickname-input"
           />
@@ -70,7 +74,9 @@ function SignupFormModal() {
           <input
             type="password"
             value={password}
-            onChange={(e) => setPassword(e.target.value)}
+            onChange={(e) => {
+              setPassword(e.target.value), (errors.password = "");
+            }}
             required
             className="signup-password-input"
           />
@@ -81,12 +87,16 @@ function SignupFormModal() {
           <input
             type="password"
             value={confirmPassword}
-            onChange={(e) => setConfirmPassword(e.target.value)}
+            onChange={(e) => {
+              setConfirmPassword(e.target.value), (errors.confirmPassword = "");
+            }}
             required
             className="signup-confirm-password-input"
           />
         </label>
-        {errors.confirmPassword && <p className="error">{errors.confirmPassword}</p>}
+        {errors.confirmPassword && (
+          <p className="error">{errors.confirmPassword}</p>
+        )}
         <button type="submit">Sign Up</button>
       </form>
     </div>
