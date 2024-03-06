@@ -3,6 +3,9 @@ from .users import seed_users, undo_users
 from .comments import seed_comments, undo_comments
 from .spots import seed_spots, undo_spots
 from .spot_images import seed_spot_images, undo_spot_images
+from .bookmarks import seed_bookmarks, undo_bookmarks
+from .boomark_spots import seed_bookmark_spots, undo_bookmark_spots
+from .ratings import seed_ratings, undo_ratings
 from app.models.db import db, environment, SCHEMA
 
 # Creates a seed group to hold our commands
@@ -22,10 +25,16 @@ def seed():
         undo_spots()
         undo_spot_images()
         undo_users()
+        undo_bookmarks()
+        undo_bookmark_spots()
+        undo_ratings()
     seed_users()
     seed_spots()
     seed_spot_images()
     seed_comments()
+    seed_bookmarks()
+    seed_bookmark_spots()
+    seed_ratings()
     # Add other seed functions here
 
 
@@ -36,4 +45,7 @@ def undo():
     undo_comments()
     undo_spots()
     undo_spot_images()
+    undo_bookmarks()
+    undo_bookmark_spots()
+    undo_ratings()
     # Add other undo functions here

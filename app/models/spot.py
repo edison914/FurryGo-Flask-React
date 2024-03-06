@@ -4,9 +4,19 @@ from datetime import datetime
 
 
 bookmark_spots = db.Table(
-    'bookmark_spots',
-    db.Column('bookmark_id', db.Integer, db.ForeignKey(add_prefix_for_prod('bookmarks.id')), primary_key=True),
-    db.Column('spot_id', db.Integer, db.ForeignKey(add_prefix_for_prod('spots.id')), primary_key=True)
+    "bookmark_spots",
+    db.Column(
+        "bookmark_id",
+        db.Integer,
+        db.ForeignKey(add_prefix_for_prod("bookmarks.id")),
+        primary_key=True,
+    ),
+    db.Column(
+        "spot_id",
+        db.Integer,
+        db.ForeignKey(add_prefix_for_prod("spots.id")),
+        primary_key=True,
+    ),
 )
 
 if environment == "production":
@@ -51,20 +61,19 @@ class Spot(db.Model):
     )
 
     # one spot can have many spotImages
-    ratings = db.relationship(
-        "Rating", back_populates="spot", cascade="all, delete"
+    ratings = db.relationship("Rating", back_populates="spot", cascade="all, delete")
+
+    # many to many between spots and bookmarks goes here
+    bookmarks = db.relationship(
+        "Bookmark", secondary=bookmark_spots, back_populates="spots"
     )
-
-
-    #many to many between spots and bookmarks goes here
-    bookmarks = db.relationship('Bookmark', secondary=bookmark_spots, back_populates='spots')
 
     # a function to return the spot in json format.
     def to_dict(self):
         average_rating = None
         if self.ratings:
-            total_ratings = sum(self.ratings)
-            average_rating = total_ratings / len(self.ratings)
+            total_ratings = sum(rating.bone_rating for rating in self.ratings)
+            average_rating = round(total_ratings / len(self.ratings), 1)
 
         return {
             "id": self.id,
@@ -84,7 +93,7 @@ class Spot(db.Model):
             "description": self.description,
             "website": self.website,
             "phone_number": self.phone_number,
-            "ratings": self.ratings,
+            "ratings": list(rating.to_dict() for rating in self.ratings),
             "average_rating": average_rating,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
