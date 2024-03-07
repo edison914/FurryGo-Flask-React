@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from flask_login import login_required, current_user
 from ..forms import NewBookmarkForm
-from app.models import db, Bookmark
+from app.models import db, Bookmark, Spot
 
 
 bookmark_routes = Blueprint("bookmarks", __name__)
@@ -87,7 +87,63 @@ def delete_a_bookmark(bookmark_id):
 
 
 #get all places of a bookmark for current user
+@bookmark_routes.route('/<int:bookmark_id>/spots', methods=['GET'])
+@login_required
+def get_places_of_a_bookmark (bookmark_id):
+
+    current_bookmark = Bookmark.query.get(bookmark_id)
+    # print("current bookmark", current_bookmark)
+    if not current_bookmark:
+        return {"error": "No bookmark is found"}, 404
+
+    if current_bookmark.user_id != current_user.id:
+        return {"error": "You can't view bookmark that is not yours"}
+
+    spots_in_current_bookmark = current_bookmark.spots
+
+    #should i create bookmark_spot or just assign these to spots?
+    return {"bookmark_spots": [spot.to_dict() for spot in spots_in_current_bookmark]}
 
 #delete a place in a bookmark for current user
+@bookmark_routes.route('/<int:bookmark_id>/spots/<int:spot_id>', methods=['DELETE'])
+@login_required
+def delete_a_place_from_bookmark (bookmark_id, spot_id):
+
+    current_bookmark = Bookmark.query.get(bookmark_id)
+
+    if not current_bookmark:
+        return {"error": "No bookmark is found"}, 404
+
+    if current_bookmark.user_id != current_user.id:
+        return {"error": "Not Authorized"}, 403
+
+    selected_spot = Spot.query.get(spot_id)
+
+    if not selected_spot:
+        return {"error": "No spot is found"}, 404
+
+    current_bookmark.spots.remove(selected_spot)
+    db.session.commit()
+
+    return {"message": "spot deleted from the current bookmark"}
+
 
 #add a place to a bookmark for current user
+@bookmark_routes.route("/<int:bookmark_id>/spots/<int:spot_id>", methods=["POST"])
+@login_required
+def add_spot_to_bookmark(bookmark_id, spot_id):
+
+    current_bookmark = Bookmark.query.get(bookmark_id)
+
+    if not current_bookmark:
+        return {"error": "No bookmark is found"}, 404
+
+    if current_user.id != current_bookmark.user_id:
+        return {"error": "Not Authorized"}, 403
+
+    selected_spot = Spot.query.get(spot_id)
+
+    current_bookmark.spots.append(selected_spot)
+    db.session.commit()
+
+    return {'message':'spot added to the current bookmark'}
