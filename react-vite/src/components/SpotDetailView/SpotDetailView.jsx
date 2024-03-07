@@ -32,6 +32,9 @@ const SpotDetailView = () => {
           <h2>
             {currentSpot?.category} - {currentSpot?.name}
           </h2>
+          <h2>
+            Bone Rating: {currentSpot?.average_rating ? currentSpot.average_rating : 0} <i className="fa-solid fa-bone"></i>
+          </h2>
         </div>
 
         <div className="spot-detail-picture-container">

@@ -24,3 +24,8 @@
     text-decoration: none;
 
 }
+
+.spot-simple-firstline-wrapper {
+    display: flex;
+    justify-content: space-between;
+}
