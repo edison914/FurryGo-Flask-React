@@ -1,7 +1,7 @@
 from flask import Blueprint, redirect, request, jsonify
 from flask_login import login_required, current_user
-from app.models import Spot, Spot_Image, Comment, db
-from ..forms import NewSpotForm, EditSpotForm, NewCommentForm
+from app.models import Spot, Spot_Image, Rating, Comment, db
+from ..forms import NewSpotForm, EditSpotForm, NewCommentForm, NewRatingForm
 from app.api.aws_helpers import (
     upload_file_to_s3,
     get_unique_filename,
@@ -292,3 +292,34 @@ def add_comments_for_spot(spot_id):
     return form.errors, 401
 
 
+# add a rating to a spot
+@spot_routes.route("/<int:spot_id>/ratings", methods=["POST"])
+@login_required
+def post_a_rating(spot_id):
+
+    current_spot = Spot.query.get(spot_id)
+
+    if not current_spot:
+        return {"error": "No spot is found"}, 404
+
+    if current_spot.user_id == current_user.id:
+        return {"error": "You can't rate your own place"}, 403
+
+    form = NewRatingForm()
+    form["csrf_token"].data = request.cookies["csrf_token"]
+
+    if form.validate_on_submit():
+        data = form.data
+
+        new_rating = Rating (
+            spot_id = spot_id,
+            user_id = current_user.id,
+            bone_rating = data["bone_rating"]
+        )
+
+        db.session.add(new_rating)
+        db.session.commit()
+
+        return new_rating.to_dict()
+
+    return form.erros, 401
