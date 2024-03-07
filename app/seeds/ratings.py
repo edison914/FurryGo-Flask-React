@@ -37,7 +37,7 @@ def seed_ratings():
             user_id = comment.user_id
             spot_id = comment.spot_id
             new_rating = Rating(
-                bone_rating=random.randrange(1, 6),
+                bone_rating=random.randrange(2, 6),
                 user_id= user_id,
                 spot_id = spot_id
             )
