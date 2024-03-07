@@ -1,7 +1,7 @@
 from flask import Blueprint, request
 from ..forms import NewRatingForm
 from flask_login import login_required, current_user
-from app.models import db, Comment, Spot, Rating
+from app.models import db, Rating
 
 rating_routes = Blueprint("ratings", __name__)
 
@@ -36,7 +36,7 @@ def update_a_rating(rating_id):
     if form.validate_on_submit():
         data = form.data
         current_rating.bone_rating = data["bone_rating"]
-        # print("current rating", current_rating)
+
         db.session.commit()
 
         return current_rating.to_dict()
