@@ -1,0 +1,30 @@
+.rating-input {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    margin-right: 4px;
+    margin: 20px;
+    font-size: 20px;
+    width: 400px;
+  }
+
+.rating-input-name {
+    margin-right: 10px
+}
+
+
+.rating-input i {
+    width: 40px;
+    font-size: xx-large;
+}
+
+
+.rating-input .filled {
+    color: #F3D849;
+    font-size: 20px;
+}
+.rating-input .empty {
+    color: #E8F0FE ;
+    font-size: 20px;
+}
