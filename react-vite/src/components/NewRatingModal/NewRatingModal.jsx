@@ -84,7 +84,7 @@ const NewRatingModal = ({ spotId, currentUser, currentSpot }) => {
 
   return (
     <div className="rating-form modalContainer">
-      <h1>Rate {currentSpot?.name}</h1>
+      <h2>Rate {currentSpot?.name}</h2>
       <form onSubmit={handleSubmit}>
         <div className="rating-input">
           <div className="rating-input-name">Your Bone Rating:</div>
@@ -133,33 +133,34 @@ const NewRatingModal = ({ spotId, currentUser, currentSpot }) => {
         {validationErrors.bone_rating && hasSubmitted && (
           <p className="error">{validationErrors.bone_rating}</p>
         )}
+        <div className="rating-button-wrapper">
+          <button
+            className="rating-submit-button"
+            type="button"
+            onClick={handleSubmit}
+            disabled={isButtonDisabled}
+          >
+            Submit
+          </button>
 
-        <button
-          className="submit-button"
-          type="button"
-          onClick={handleSubmit}
-          disabled={isButtonDisabled}
-        >
-          Submit
-        </button>
-
-        <button
-          type="button"
-          className="cancel-button"
-          onClick={handleCancelSubmit}
-        >
-          Cancel
-        </button>
-
-        {currentRatingNum && (
           <button
             type="button"
-            className="remove-button"
-            onClick={handleRemoveSubmit}
+            className="rating-cancel-button"
+            onClick={handleCancelSubmit}
           >
-            Remove Your Rating
+            Cancel
           </button>
-        )}
+
+          {currentRatingNum && (
+            <button
+              type="button"
+              className="remove-button"
+              onClick={handleRemoveSubmit}
+            >
+              Remove Your Rating
+            </button>
+          )}
+        </div>
       </form>
     </div>
   );

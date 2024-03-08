@@ -7,6 +7,9 @@
     margin: 20px;
     font-size: 20px;
     width: 400px;
+    border:  1px solid #a4a2a2;
+    border-radius: 5px;
+    padding: 20px;
   }
 
 .rating-input-name {
@@ -27,4 +30,11 @@
 .rating-input .empty {
     color: #E8F0FE ;
     font-size: 20px;
+}
+
+.rating-button-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    align-self: center;
 }
