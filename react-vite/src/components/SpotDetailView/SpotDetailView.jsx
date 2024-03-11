@@ -9,6 +9,7 @@ import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import LoginFormModal from "../LoginFormModal/LoginFormModal";
 import NotFoundPage from "../Navigation/NotFoundPage";
 import NewRatingModal from "../NewRatingModal/NewRatingModal";
+import { AddToBookMarkModal } from "../AddToBookmarkModal/AddToBOokmarkModal";
 
 const SpotDetailView = () => {
   const dispatch = useDispatch();
@@ -99,7 +100,6 @@ const SpotDetailView = () => {
                         spotId={spotId}
                         currentUser={currentUser}
                         currentSpot={currentSpot}
-
                       />
                     }
                     buttonText="Rate the place"
@@ -110,6 +110,26 @@ const SpotDetailView = () => {
               <OpenModalButton
                 modalComponent={<LoginFormModal spot={currentSpot} />}
                 buttonText="Rate the place"
+              />
+            )}
+            need to revise the following to add to bookmark
+            {currentUser ? (
+              <div className="new-comment-button-container">
+                <OpenModalButton
+                  modalComponent={
+                    <AddToBookMarkModal
+                      spotId={spotId}
+                      currentUser={currentUser}
+                      currentSpot={currentSpot}
+                    />
+                  }
+                  buttonText="Bookmark the place"
+                />
+              </div>
+            ) : (
+              <OpenModalButton
+                modalComponent={<LoginFormModal spot={currentSpot} />}
+                buttonText="Bookmark the place"
               />
             )}
           </div>
