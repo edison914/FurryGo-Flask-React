@@ -1,0 +1,12 @@
+.delete-comment-button-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-self: center;
+}
+
+.delete-comment-button-wrapper button {
+    width: 100px;
+    margin-left: 10px;
+    margin-right: 10px;
+}

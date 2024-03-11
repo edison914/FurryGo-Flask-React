@@ -1,0 +1,11 @@
+.signup-button-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-self: center;
+}
+
+.signup-button-wrapper button {
+    width: 100px;
+    height: 40px;
+}

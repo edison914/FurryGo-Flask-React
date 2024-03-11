@@ -13,3 +13,15 @@
 .signup-confirm-password-input {
     width: 138px;
 }
+
+
+.signup-button-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-self: center;
+}
+
+.signup-button-wrapper button {
+    width: 100px;
+}

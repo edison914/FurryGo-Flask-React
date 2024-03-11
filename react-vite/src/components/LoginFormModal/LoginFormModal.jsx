@@ -44,7 +44,9 @@ function LoginFormModal() {
           <input
             type="text"
             value={email}
-            onChange={(e) => {setEmail(e.target.value), errors.email=''}}
+            onChange={(e) => {
+              setEmail(e.target.value), (errors.email = "");
+            }}
             required
             className="login-email-input"
           />
@@ -55,27 +57,30 @@ function LoginFormModal() {
           <input
             type="password"
             value={password}
-            onChange={(e) => {setPassword(e.target.value), errors.password=''}}
+            onChange={(e) => {
+              setPassword(e.target.value), (errors.password = "");
+            }}
             required
           />
         </label>
         {errors.password && <p className="error">{errors.password}</p>}
+        <div className="login-button-wrapper">
+          <button type="submit" disabled={isSubmitted}>
+            Log In
+          </button>
 
-        <button type="submit" disabled={isSubmitted}>
-          Log In
-        </button>
-
-        <button
-          className="demo-button"
-          type="submit"
-          disabled={isSubmitted}
-          onClick={() => {
-            setEmail("demo@aa.io");
-            setPassword("password");
-          }}
-        >
-          Demo Login
-        </button>
+          <button
+            className="demo-button"
+            type="submit"
+            disabled={isSubmitted}
+            onClick={() => {
+              setEmail("demo@aa.io");
+              setPassword("password");
+            }}
+          >
+            Demo Login
+          </button>
+        </div>
       </form>
     </div>
   );

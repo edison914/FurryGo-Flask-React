@@ -33,24 +33,25 @@ const DeleteAComment = ({ commentId }) => {
       {errors.message && <p className="">{errors.message}</p>}
 
       <p>Are you sure you want to remove this comment?</p>
+      <div className="delete-comment-button-wrapper">
+        <button
+          className="deleteCommentYes button"
+          type="button"
+          onClick={handleConfirmSubmit}
+        >
+          Yes
+        </button>
 
-      <button
-        className="deleteCommentYes button"
-        type="button"
-        onClick={handleConfirmSubmit}
-      >
-        Yes
-      </button>
-
-      <button
-        className="deleteCommentNo button"
-        type="button"
-        onClick={handleCancelSubmit}
-      >
-        No
-      </button>
+        <button
+          className="deleteCommentNo button"
+          type="button"
+          onClick={handleCancelSubmit}
+        >
+          No
+        </button>
+      </div>
     </div>
   );
-}
+};
 
 export default DeleteAComment;
