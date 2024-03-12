@@ -37,6 +37,13 @@ const removeBookmark = (bookmarkId) => {
   };
 };
 
+const loadBookmarkPlace = (bookmarkSpots) => {
+  return {
+    type: GET_ALL_PLACES_BY_BOOKMARK_ID,
+    payload: bookmarkSpots,
+  };
+};
+
 //thunk actions
 export const getBookmarksThunk = () => async (dispatch) => {
   try {
@@ -109,43 +116,65 @@ export const deleteBookmarkThunk = (bookmarkId) => async (dispatch) => {
   }
 };
 
+export const getBookmarkPlacesThunk = (bookmarkId) => async (dispatch) => {
+  try {
+    const res = await fetch(`/api/bookmarks/${bookmarkId}/spots`);
+    console.log(res)
+    if (res.ok) {
+      const data = await res.json();
+
+      dispatch(loadBookmarkPlace(data));
+      return data;
+    }
+    throw res;
+  } catch (e) {
+    const data = await e.json();
+    return data;
+  }
+};
+
 //declare a normalized default state
-const initialState = { allBookmarks: [], byId: {} };
+const initialState = { allBookmarks: [], byId: {}, bookmarkSpots: [] };
 
 //create bookmark reducers to process actions
 const bookmarksReducer = (state = initialState, action) => {
-    const newState = { ...state };
-    switch (action.type) {
-      case GET_ALL_BOOKMARKS_BY_USER_ID:
-        newState.allBookmarks = action.payload;
-        action.payload.forEach((bookmark) => {
-          newState.byId[bookmark.id] = bookmark;
-        });
-        return newState;
+  const newState = { ...state };
+  switch (action.type) {
+    case GET_ALL_BOOKMARKS_BY_USER_ID:
+      newState.allBookmarks = action.payload;
+      action.payload.forEach((bookmark) => {
+        newState.byId[bookmark.id] = bookmark;
+      });
+      return newState;
 
-      case POST_BOOKMARK:
-        newState.allBookmarks.push(action.payload);
-        newState.byId[action.payload.id] = action.payload;
-        return newState;
+    case POST_BOOKMARK:
+      newState.allBookmarks.push(action.payload);
+      newState.byId[action.payload.id] = action.payload;
+      return newState;
 
-      case EDIT_BOOKMARK: {
-        const index = newState.allBookmarks.findIndex(
-          (bookmark) => bookmark.id === action.payload.id
-        );
-        newState.allBookmarks[index] = action.payload;
-        newState.byId[action.payload.id] = action.payload;
-        return newState;
-      }
-
-      case REMOVE_BOOKMARK:
-        newState.allBookmarks = newState.allBookmarks.filter(
-          (bookmark) => bookmark.id !== action.payload
-        );
-        delete newState.byId[action.payload];
-        return newState;
-      default:
-        return state;
+    case EDIT_BOOKMARK: {
+      const index = newState.allBookmarks.findIndex(
+        (bookmark) => bookmark.id === action.payload.id
+      );
+      newState.allBookmarks[index] = action.payload;
+      newState.byId[action.payload.id] = action.payload;
+      return newState;
     }
-  };
 
-  export default bookmarksReducer;
+    case REMOVE_BOOKMARK:
+      newState.allBookmarks = newState.allBookmarks.filter(
+        (bookmark) => bookmark.id !== action.payload
+      );
+      delete newState.byId[action.payload];
+      return newState;
+
+    case GET_ALL_PLACES_BY_BOOKMARK_ID:
+      newState.bookmarkSpots = action.payload;
+      return newState;
+
+    default:
+      return state;
+  }
+};
+
+export default bookmarksReducer;

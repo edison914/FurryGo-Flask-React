@@ -102,7 +102,7 @@ def get_places_of_a_bookmark(bookmark_id):
     spots_in_current_bookmark = current_bookmark.spots
 
     # should i create bookmark_spot or just assign these to spots?
-    return {"bookmark_spots": [spot.to_dict() for spot in spots_in_current_bookmark]}
+    return [spot.to_dict() for spot in spots_in_current_bookmark]
 
 
 # delete a place in a bookmark for current user
