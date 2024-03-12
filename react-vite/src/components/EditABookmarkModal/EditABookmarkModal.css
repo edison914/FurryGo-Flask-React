@@ -1,11 +1,11 @@
-.edit-comment-button-wrapper {
+.edit-button-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-self: center;
 }
 
-.edit-comment-button-wrapper button {
+.edit-button-wrapper button {
     width: 100px;
     height: 40px;
 }

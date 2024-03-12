@@ -1,0 +1,25 @@
+.bookmark{
+    display: flex;
+    flex-direction: row;
+}
+
+.bookmark-view-container {
+    margin: 10px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+.edit-bookmark-button-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-bookmark-button-wrapper button{
+    margin: 5px 0;
+}
+
+.bookmark-name {
+    margin-bottom: 0px;
+}

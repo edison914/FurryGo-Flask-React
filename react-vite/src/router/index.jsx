@@ -6,7 +6,7 @@ import NewSpotForm from '../components/NewSpotForm/NewSpotForm';
 import CurrentUserSpots from '../components/CurrentUserSpots/CurrentUserSpots';
 import EditSpotForm from '../components/EditSpotForm/EditSpotForm';
 import NotFoundPage from '../components/Navigation/NotFoundPage';
-import { BookmarksPage } from '../components/BookmarksPage/BookmarksPage';
+import { BookmarksPage } from '../components/CurrentUserBookmarks/CurrentUserBookmarks';
 
 export const router = createBrowserRouter([
   {
@@ -34,7 +34,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/bookmarks",
-        element: <BookmarksPage />,
+        element: <BookmarksPage/>,
       },
       {
         path: "*",

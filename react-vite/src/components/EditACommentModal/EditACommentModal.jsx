@@ -75,7 +75,7 @@ const EditACommentModal = ({ spot, commentId }) => {
         {validationErrors.image_url && hasSubmitted && (
           <p className="error">{validationErrors.image_url}</p>
         )}
-        <div className="signup-button-wrapper">
+        <div className="edit-comment-button-wrapper">
           <button
             className="submit-button"
             type="button"

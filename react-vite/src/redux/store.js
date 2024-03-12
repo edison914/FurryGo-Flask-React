@@ -14,7 +14,7 @@ const rootReducer = combineReducers({
   session: sessionReducer,
   spots: spotReducers,
   comments: commentsReducer,
-  bookmakrs: bookmarksReducer
+  bookmarks: bookmarksReducer
 });
 
 let enhancer;

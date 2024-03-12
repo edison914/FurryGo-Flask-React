@@ -1,11 +1,12 @@
-.edit-comment-button-wrapper {
+.delete-bookmark-button-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-self: center;
 }
 
-.edit-comment-button-wrapper button {
+.delete-bookmark-button-wrapper button {
     width: 100px;
-    height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
 }
