@@ -15,7 +15,7 @@ export const BookmarksPage = () => {
 
   useEffect(() => {
     dispatch(getBookmarksThunk());
-  }, [dispatch]);
+  }, [dispatch, currentUser]);
 
   if (!currentUser)
     return (
