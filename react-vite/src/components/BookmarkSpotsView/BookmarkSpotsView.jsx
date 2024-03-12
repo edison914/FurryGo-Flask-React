@@ -2,6 +2,7 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBookmarkPlacesThunk } from "../../redux/bookmarks";
 import "./BookmarkSpotsView.css";
+import { Link } from "react-router-dom";
 
 const BookmarkSpotsView = ({ bookmarkId, bookmarkName }) => {
   const places = useSelector((state) => state.bookmarks?.bookmarkSpots);
@@ -25,15 +26,20 @@ const BookmarkSpotsView = ({ bookmarkId, bookmarkName }) => {
       <h3>{bookmarkName}</h3>
       {places?.map((place) => (
         <div key={place.key} className="bookmark-place-view-container">
-          <img src={place.spot_images[0].image_url} />
-          <div className="bookmark-place-text-rating">
+          <Link to={`/spots/${place.id}`}>
+            <img src={place.spot_images[0].image_url} />
+          </Link>
+
+          <Link
+            to={`/spots/${place.id}`}
+            className="bookmark-place-text-rating"
+          >
             <div>{place.name}</div>
             <div>
               {place.city},{place.state}{" "}
             </div>
             <div>Average Rating: {place.average_rating}</div>
-
-          </div>
+          </Link>
           <button>Remove</button>
         </div>
       ))}

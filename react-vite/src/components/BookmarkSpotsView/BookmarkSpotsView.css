@@ -1,5 +1,3 @@
-
-
 .bookmark-place-view-container {
     display: flex;
     flex-direction: row;
@@ -17,6 +15,10 @@
     border-radius: 5px;
 }
 
+.bookmark-place-text-rating {
+    text-decoration: none;
+    color: #5c5c5c;
+}
 
 .bookmark-place-view-container button {
     height: 100px;
