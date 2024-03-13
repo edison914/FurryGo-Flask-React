@@ -1,18 +1,20 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBookmarkPlacesThunk } from "../../redux/bookmarks";
 import "./BookmarkSpotsView.css";
 import { Link } from "react-router-dom";
+import OpenModalButton from "../OpenModalButton/OpenModalButton";
+import DeleteBookmarkPlaceModal from "../DeleteBookmarkPlaceModal/DeleteBookmarkPlaceModal";
 
 const BookmarkSpotsView = ({ bookmarkId, bookmarkName }) => {
   const places = useSelector((state) => state.bookmarks?.bookmarkSpots);
-
+  const [localName, setLocalName] = useState(bookmarkName);
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getBookmarkPlacesThunk(bookmarkId));
-  }, [dispatch, bookmarkId]);
+    setLocalName(bookmarkName);
+  }, [dispatch, bookmarkId, bookmarkName]);
 
-  //   console.log(bookmarkId);
 
   if (places.length == 0)
     return (
@@ -23,11 +25,11 @@ const BookmarkSpotsView = ({ bookmarkId, bookmarkName }) => {
     );
   return (
     <div className="bookmark-place-container">
-      <h3>{bookmarkName}</h3>
+      <h3>{localName}</h3>
       {places?.map((place) => (
         <div key={place.key} className="bookmark-place-view-container">
           <Link to={`/spots/${place.id}`}>
-            <img src={place.spot_images[0].image_url} />
+            <img src={place.spot_images[0]?.image_url} />
           </Link>
 
           <Link
@@ -40,7 +42,12 @@ const BookmarkSpotsView = ({ bookmarkId, bookmarkName }) => {
             </div>
             <div>Average Rating: {place.average_rating}</div>
           </Link>
-          <button>Remove</button>
+          <div className="delete-bookmark-button">
+            <OpenModalButton
+              modalComponent={<DeleteBookmarkPlaceModal spotId={place.id} bookmarkId={bookmarkId}/>}
+              buttonText="Delete From Bookmark"
+            ></OpenModalButton>
+          </div>
         </div>
       ))}
     </div>

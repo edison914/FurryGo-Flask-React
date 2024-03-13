@@ -44,6 +44,13 @@ const loadBookmarkPlace = (bookmarkSpots) => {
   };
 };
 
+const removeAPlaceFromBookmark = (spotId) => {
+  return {
+    type: REMOVE_A_PLACE_FROM_BOOKMARK,
+    payload: spotId,
+  };
+};
+
 //thunk actions
 export const getBookmarksThunk = () => async (dispatch) => {
   try {
@@ -133,6 +140,25 @@ export const getBookmarkPlacesThunk = (bookmarkId) => async (dispatch) => {
   }
 };
 
+
+export const deleteAPlaceFromBookmarkThunk = (bookmarkId, spotId) => async (dispatch) => {
+  try {
+    const res = await fetch(`/api/bookmarks/${bookmarkId}/spots/${spotId}`, {
+      method: "DELETE",
+    });
+    if (res.ok) {
+      const data = await res.json();
+      //need to update the redux store.
+      dispatch(removeAPlaceFromBookmark(spotId));
+      return data;
+    }
+    throw res;
+  } catch (e) {
+    const data = await e.json();
+    return data;
+  }
+};
+
 //declare a normalized default state
 const initialState = { allBookmarks: [], byId: {}, bookmarkSpots: [] };
 
@@ -171,6 +197,12 @@ const bookmarksReducer = (state = initialState, action) => {
     case GET_ALL_PLACES_BY_BOOKMARK_ID:
       newState.bookmarkSpots = action.payload;
       return newState;
+
+      case REMOVE_A_PLACE_FROM_BOOKMARK:
+        newState.bookmarkSpots = newState.bookmarkSpots.filter(
+          (spot) => spot.id !== action.payload
+        );
+        return newState;
 
     default:
       return state;

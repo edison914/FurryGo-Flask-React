@@ -9,7 +9,7 @@ import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import LoginFormModal from "../LoginFormModal/LoginFormModal";
 import NotFoundPage from "../Navigation/NotFoundPage";
 import NewRatingModal from "../NewRatingModal/NewRatingModal";
-import { AddToBookMarkModal } from "../AddToBookmarkModal/AddToBOokmarkModal";
+import { AddToBookmarkModal } from "../AddToBookmarkModal/AddToBookmarkModal";
 
 const SpotDetailView = () => {
   const dispatch = useDispatch();
@@ -117,7 +117,7 @@ const SpotDetailView = () => {
               <div className="new-comment-button-container">
                 <OpenModalButton
                   modalComponent={
-                    <AddToBookMarkModal
+                    <AddToBookmarkModal
                       spotId={spotId}
                       currentUser={currentUser}
                       currentSpot={currentSpot}

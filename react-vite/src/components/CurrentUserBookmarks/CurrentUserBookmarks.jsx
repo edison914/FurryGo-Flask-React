@@ -18,11 +18,20 @@ export const BookmarksPage = () => {
     return dateB - dateA;
   });
 
-  // const defaultId = bookmarks?[0].id
-  const [bookmarkSelectedName, SetBookmarkSelectedName] = useState(null);
-  const [bookmarkSelectedId, SetBookmarkSelectedId] = useState(null);
+  const [bookmarkSelectedName, setBookmarkSelectedName] = useState(null);
+  const [bookmarkSelectedId, setBookmarkSelectedId] = useState(null);
 
+  const handleBookmarkClick = (bookmarkId, bookmarkName) => {
+    setBookmarkSelectedName(bookmarkName);
+    setBookmarkSelectedId(bookmarkId);
+  };
+
+  // console.log(bookmarkSelectedName)
   const dispatch = useDispatch();
+
+  useEffect(() => {
+    setBookmarkSelectedName(bookmarks[0]?.name)
+  },[dispatch, bookmarks])
 
   useEffect(() => {
     dispatch(getBookmarksThunk());
@@ -72,10 +81,7 @@ export const BookmarksPage = () => {
             <div
               key={bookmark.id}
               className="bookmark-view-container"
-              onClick={() => {
-                SetBookmarkSelectedId(bookmark.id),
-                  SetBookmarkSelectedName(bookmark.name);
-              }}
+              onClick={() => handleBookmarkClick(bookmark.id,bookmark.name)}
             >
               <h3 className="bookmark-name">{bookmark.name}</h3>
 
