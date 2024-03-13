@@ -144,7 +144,13 @@ def add_spot_to_bookmark(bookmark_id, spot_id):
 
     selected_spot = Spot.query.get(spot_id)
 
+    print("selected spot", selected_spot)
+
+    # if selected spot is already in the current bookmark, no need to append. just return.
+    if selected_spot in current_bookmark.spots:
+        return {"error": "Already in the bookmark."}, 400
+
     current_bookmark.spots.append(selected_spot)
     db.session.commit()
 
-    return [selected_spot.to_dict()]
+    return selected_spot.to_dict()

@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./AddToBookmarkModal.css";
-import { removeSpotThunk } from "../../redux/spots";
-import { deleteAPlaceFromBookmarkThunk } from "../../redux/bookmarks";
+import {
+  getBookmarksThunk,
+  postAPlaceToBookmarkThunk,
+} from "../../redux/bookmarks";
 
 export const AddToBookmarkModal = ({ spotId }) => {
   const dispatch = useDispatch();
@@ -14,27 +16,49 @@ export const AddToBookmarkModal = ({ spotId }) => {
     const dateB = new Date(b.updated_at);
     return dateB - dateA;
   });
+  // console.log(bookmarks);
 
-  const [errors, setErrors] = useState({});
+  const [validationErrors, setValidationErrors] = useState({});
   const { closeModal } = useModal();
 
-  const handleConfirmSubmit = (e) => {
-    e.preventDefault();
-    setErrors({});
+  useEffect(() => {
+    dispatch(getBookmarksThunk());
+  }, [dispatch]);
 
-    return dispatch(deleteAPlaceFromBookmarkThunk(bookmarkId, spotId))
-      .then(closeModal)
-      .catch(async (res) => {
-        //const data = await res.json();
-        if (res && res.message) {
-          setErrors(res);
-        }
-      });
+  const handleAddSubmit = async (bookmarkId) => {
+    // e.preventDefault();
+    setValidationErrors({});
+    const res = await dispatch(postAPlaceToBookmarkThunk(bookmarkId, spotId));
+    // console.log(res);
+    if (res.error) {
+      alert(`Error: Place is already in bookmark`);
+    } else {
+      alert(`successfully added to the bookmark`);
+      closeModal();
+    }
   };
   const handleCancelSubmit = (e) => {
     e.preventDefault();
     closeModal();
   };
+
+  // const handleSelectedBookmark = (bookmarkId) => {
+  //   setSelectedBookmarksId((prevBookmarkId) => {
+  //     //check to see if selected id is already in the array
+  //     const alreadySelected = prevBookmarkId.includes(bookmarkId);
+
+  //     //if yes, its already in the array
+  //     if (alreadySelected) {
+  //       //remove it from the array because of your check
+  //       return prevBookmarkId.filter((id) => id !== bookmarkId);
+  //     } else {
+  //       //if no, add the bookmarkId to the array
+  //       return [...prevBookmarkId, bookmarkId];
+  //     }
+  //   });
+  // };
+
+  // console.log(selectedBookmarksId);
 
   return (
     <div className="add-bookmark-place modalContainer">
@@ -43,30 +67,39 @@ export const AddToBookmarkModal = ({ spotId }) => {
         bookmarks.map((bookmark) => (
           <div key={bookmark.id}>
             <label>
-              <input type="checkbox" name={bookmark.name} onChange/>
+              {/* <input
+                type="checkbox"
+                name={bookmark.name}
+                value={bookmark.id}
+                onChange={() => handleSelectedBookmark(bookmark.id)}
+              /> */}
               {bookmark.name}
             </label>
+            <button
+              className="add-button"
+              type="button"
+              onClick={() => {
+                handleAddSubmit(bookmark.id);
+              }}
+            >
+              Add
+            </button>
+            {validationErrors.error && (
+              <p className="">{validationErrors.error}</p>
+            )}
           </div>
         ))
       ) : (
-        <div>You do not have a bookmark</div>
+        <div>You do not have a bookmark. Create one.</div>
       )}
-      {errors.message && <p className="">{errors.message}</p>}
-      <div className="add-bookmark-place-button-wrapper">
-        <button
-          className="delete-button"
-          type="button"
-          onClick={handleConfirmSubmit}
-        >
-          Yes
-        </button>
 
+      <div className="add-bookmark-place-button-wrapper">
         <button
           className="cancel-button"
           type="button"
           onClick={handleCancelSubmit}
         >
-          No
+          Cancel
         </button>
       </div>
     </div>

@@ -112,7 +112,6 @@ const SpotDetailView = () => {
                 buttonText="Rate the place"
               />
             )}
-            need to revise the following to add to bookmark
             {currentUser ? (
               <div className="new-comment-button-container">
                 <OpenModalButton

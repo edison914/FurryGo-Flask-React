@@ -133,10 +133,6 @@ export const deleteBookmarkThunk = (bookmarkId) => async (dispatch) => {
 
 
 
-
-
-
-
 //-----------------All thunk below are bookmark place related ----------------------------
 export const getBookmarkPlacesThunk = (bookmarkId) => async (dispatch) => {
   try {
@@ -178,11 +174,11 @@ export const postAPlaceToBookmarkThunk = (bookmarkId, spotId) => async (dispatch
     const res = await fetch(`/api/bookmarks/${bookmarkId}/spots/${spotId}`, {
       method: "POST",
     });
-
+    // console.log(res)
     if (res.ok) {
       const data = await res.json();
+      console.log(`is this called`)
       dispatch(addAPlaceToBookmark(data));
-      // dispatch(getBookmarksThunk());
       return data;
     }
     throw res;

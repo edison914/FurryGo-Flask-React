@@ -29,7 +29,7 @@ const BookmarkSpotsView = ({ bookmarkId, bookmarkName }) => {
       {places?.map((place) => (
         <div key={place.key} className="bookmark-place-view-container">
           <Link to={`/spots/${place.id}`}>
-            <img src={place.spot_images[0]?.image_url} />
+            <img src={place?.spot_images[0]?.image_url} />
           </Link>
 
           <Link
