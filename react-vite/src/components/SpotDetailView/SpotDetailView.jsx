@@ -119,8 +119,6 @@ const SpotDetailView = () => {
                   modalComponent={
                     <AddToBookmarkModal
                       spotId={spotId}
-                      currentUser={currentUser}
-                      currentSpot={currentSpot}
                     />
                   }
                   buttonText="Bookmark the place"

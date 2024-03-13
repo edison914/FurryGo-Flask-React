@@ -51,6 +51,13 @@ const removeAPlaceFromBookmark = (spotId) => {
   };
 };
 
+const addAPlaceToBookmark = (spot) => {
+  return {
+    type: ADD_A_PLACE_TO_BOOKMARK,
+    payload: spot,
+  };
+};
+
 //thunk actions
 export const getBookmarksThunk = () => async (dispatch) => {
   try {
@@ -123,6 +130,14 @@ export const deleteBookmarkThunk = (bookmarkId) => async (dispatch) => {
   }
 };
 
+
+
+
+
+
+
+
+//-----------------All thunk below are bookmark place related ----------------------------
 export const getBookmarkPlacesThunk = (bookmarkId) => async (dispatch) => {
   try {
     const res = await fetch(`/api/bookmarks/${bookmarkId}/spots`);
@@ -139,7 +154,6 @@ export const getBookmarkPlacesThunk = (bookmarkId) => async (dispatch) => {
     return data;
   }
 };
-
 
 export const deleteAPlaceFromBookmarkThunk = (bookmarkId, spotId) => async (dispatch) => {
   try {
@@ -158,6 +172,26 @@ export const deleteAPlaceFromBookmarkThunk = (bookmarkId, spotId) => async (disp
     return data;
   }
 };
+
+export const postAPlaceToBookmarkThunk = (bookmarkId, spotId) => async (dispatch) => {
+  try {
+    const res = await fetch(`/api/bookmarks/${bookmarkId}/spots/${spotId}`, {
+      method: "POST",
+    });
+
+    if (res.ok) {
+      const data = await res.json();
+      dispatch(addAPlaceToBookmark(data));
+      // dispatch(getBookmarksThunk());
+      return data;
+    }
+    throw res;
+  } catch (e) {
+    const data = await e.json();
+    return data;
+  }
+};
+
 
 //declare a normalized default state
 const initialState = { allBookmarks: [], byId: {}, bookmarkSpots: [] };
@@ -203,6 +237,10 @@ const bookmarksReducer = (state = initialState, action) => {
           (spot) => spot.id !== action.payload
         );
         return newState;
+
+    case ADD_A_PLACE_TO_BOOKMARK:
+      newState.bookmarkSpots.push(action.payload);
+      return newState;
 
     default:
       return state;

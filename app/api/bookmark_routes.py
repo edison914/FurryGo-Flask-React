@@ -147,4 +147,4 @@ def add_spot_to_bookmark(bookmark_id, spot_id):
     current_bookmark.spots.append(selected_spot)
     db.session.commit()
 
-    return {"message": "spot added to the current bookmark"}
+    return [selected_spot.to_dict()]
