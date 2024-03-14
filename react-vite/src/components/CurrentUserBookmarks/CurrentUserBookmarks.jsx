@@ -31,6 +31,7 @@ export const BookmarksPage = () => {
 
   useEffect(() => {
     setBookmarkSelectedName(bookmarks[0]?.name)
+    setBookmarkSelectedId(bookmarks[0]?.id)
   },[dispatch, bookmarks])
 
   useEffect(() => {
