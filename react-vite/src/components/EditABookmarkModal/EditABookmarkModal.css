@@ -1,11 +1,23 @@
-.edit-button-wrapper {
+.edit-bookmark-button-wrapper {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-self: center;
 }
 
-.edit-button-wrapper button {
+.edit-bookmark-button-wrapper button {
     width: 100px;
-    height: 40px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.edit-bookmark-formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.edit-bookmark-name-input {
+    width: 240px;
 }

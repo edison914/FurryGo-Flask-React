@@ -1,8 +1,9 @@
-import { useDispatch} from "react-redux";
+import { useDispatch } from "react-redux";
 import { useState } from "react";
 import "./EditABookmarkModal.css";
 import { useModal } from "../../context/Modal";
 import { editBookmarkThunk } from "../../redux/bookmarks";
+import "./EditABookmarkModal.css"
 
 const EditABookmarkModal = ({ bookmark }) => {
   const dispatch = useDispatch();
@@ -40,14 +41,15 @@ const EditABookmarkModal = ({ bookmark }) => {
   };
 
   return (
-    <div className="bookmark-form modalContainer">
-      <form onSubmit={handleSubmit} className="formContainer">
+    <div className="edit-bookmark-form modalContainer">
+      <form onSubmit={handleSubmit} className="edit-bookmark-formContainer">
         <h2>Edit {bookmark?.name}</h2>
         <label>
           Name{" "}
           <input
             type="text"
             placeholder="name"
+            className="edit-bookmark-name-input"
             value={name}
             onChange={(e) => {
               setName(e.target.value), (validationErrors.name = "");
@@ -57,9 +59,9 @@ const EditABookmarkModal = ({ bookmark }) => {
         {validationErrors && hasSubmitted && (
           <p className="error">{validationErrors.name}</p>
         )}
-        <div className="edit-button-wrapper">
+        <div className="edit-bookmark-button-wrapper">
           <button
-            className="submit-button"
+            className="edit-bookmark-button"
             type="button"
             onClick={handleSubmit}
             disabled={isButtonDisabled}
@@ -69,7 +71,7 @@ const EditABookmarkModal = ({ bookmark }) => {
 
           <button
             type="button"
-            className="cancel-button"
+            className="edit-bookmark-button"
             onClick={handleCancelSubmit}
           >
             Cancel
