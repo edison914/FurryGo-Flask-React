@@ -41,13 +41,14 @@ const NewBookmarkModal = () => {
 
     return (
       <div className="bookmark-form modalContainer">
-        <form onSubmit={handleSubmit} className="formContainer">
+        <form onSubmit={handleSubmit}>
           <h2>Create a new bookmark</h2>
           <label>
             Name{" "}
             <input
               type="text"
               placeholder="name"
+              className="new-bookmark-name-input"
               value={name}
               onChange={(e) => {
                 setName(e.target.value), (validationErrors.name = "");
@@ -57,7 +58,7 @@ const NewBookmarkModal = () => {
           {validationErrors && hasSubmitted && (
             <p className="error">{validationErrors.name}</p>
           )}
-          <div className="edit-button-wrapper">
+          <div className="new-bookmark-button-wrapper">
             <button
               className="submit-button"
               type="button"
