@@ -65,7 +65,7 @@ export const AddToBookmarkModal = ({ spotId }) => {
       <h2>Add to Bookmark</h2>
       {bookmarks ? (
         bookmarks.map((bookmark) => (
-          <div key={bookmark.id}>
+          <div key={bookmark.id} className="add-to-bookmark-container">
             <label>
               {/* <input
                 type="checkbox"
