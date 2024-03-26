@@ -13,6 +13,10 @@ function SignupFormModal() {
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
 
+  const handleCancelSubmit = () => {
+    closeModal()
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
 
@@ -99,6 +103,7 @@ function SignupFormModal() {
         )}
         <div className="signup-button-wrapper">
         <button type="submit">Sign Up</button>
+        <button type="button" onClick={handleCancelSubmit}>Cancel</button>
         </div>
 
       </form>
