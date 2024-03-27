@@ -1,0 +1,9 @@
+.map {
+    display: flex;
+    flex-direction: column;
+}
+
+.map-div {
+    height: 800px;
+    margin: 10px;
+}

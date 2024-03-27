@@ -10,6 +10,7 @@ import LoginFormModal from "../LoginFormModal/LoginFormModal";
 import NotFoundPage from "../Navigation/NotFoundPage";
 import NewRatingModal from "../NewRatingModal/NewRatingModal";
 import { AddToBookmarkModal } from "../AddToBookmarkModal/AddToBookmarkModal";
+import { CurrentMapView } from "../CurrentMap/CurrentMap";
 
 const SpotDetailView = () => {
   const dispatch = useDispatch();
@@ -115,11 +116,7 @@ const SpotDetailView = () => {
             {currentUser ? (
               <div className="new-comment-button-container">
                 <OpenModalButton
-                  modalComponent={
-                    <AddToBookmarkModal
-                      spotId={spotId}
-                    />
-                  }
+                  modalComponent={<AddToBookmarkModal spotId={spotId} />}
                   buttonText="Bookmark the place"
                 />
               </div>
@@ -135,11 +132,12 @@ const SpotDetailView = () => {
         {/* <div>Average Bone Rating: {currentSpot?.average_rating ? currentSpot.average_rating `Bones` : "No Rating Yet"}</div> */}
 
         <div className="spot-detail-bottom-half-container">
-          {/* <div className="commentsContainer"> */}
-          <CommentsBySpot />
-          {/* </div> */}
-
-          <div className="mapContainer"></div>
+          <div className="comments-container">
+            <CommentsBySpot />
+          </div>
+          <div className="map-container">
+            <CurrentMapView spot={currentSpot} />
+          </div>
         </div>
       </div>
     </div>
