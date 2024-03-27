@@ -18,10 +18,15 @@ export const CurrentMapView = ({ spot }) => {
   const position = { lat: lat, lng: lng };
   //   console.log(position);
   return (
-    <APIProvider className="map" apiKey={googleAPI}>
-      {/* <div>Google Map</div> */}
+    <APIProvider apiKey={googleAPI}>
       <div className="map-div">
-        <Map zoom={10} center={position} mapId="77c4b4fcdd3e09c4">
+        <Map
+          defaultCenter={position}
+          mapId="77c4b4fcdd3e09c4"
+          defaultZoom={11}
+          gestureHandling="greedy"
+          zoomControl={true}
+        >
           <AdvancedMarker position={position}>
             <Pin
               background={"Blue"}
