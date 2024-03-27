@@ -13,14 +13,12 @@ export const CurrentMapView = ({ spot }) => {
   //   console.log(spot.lat);
   const lat = spot?.lat;
   const lng = spot?.lng;
-
+  const googleAPI = import.meta.env.VITE_GOOGLE_MAP_API;
+  console.log(googleAPI);
   const position = { lat: lat, lng: lng };
   //   console.log(position);
   return (
-    <APIProvider
-      className="map"
-      apiKey="AIzaSyC9eOlj0m8Vw5Qo4rZvykGOImW4lpvyFDs"
-    >
+    <APIProvider className="map" apiKey={googleAPI}>
       {/* <div>Google Map</div> */}
       <div className="map-div">
         <Map zoom={10} center={position} mapId="77c4b4fcdd3e09c4">
