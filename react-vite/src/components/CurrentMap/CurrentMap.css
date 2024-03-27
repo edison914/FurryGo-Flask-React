@@ -1,9 +1,12 @@
-.map {
-    display: flex;
-    flex-direction: column;
-}
+
 
 .map-div {
-    height: 800px;
+    height: 600px;
     margin: 10px;
+
+}
+
+
+.map-div div {
+    border-radius: 10px;
 }

@@ -135,9 +135,9 @@ const SpotDetailView = () => {
           <div className="comments-container">
             <CommentsBySpot />
           </div>
-          <div className="map-container">
+          {currentSpot && <div className="map-container">
             <CurrentMapView spot={currentSpot} />
-          </div>
+          </div>}
         </div>
       </div>
     </div>
