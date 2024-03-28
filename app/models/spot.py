@@ -61,10 +61,10 @@ class Spot(db.Model):
 
     # a function to return the spot in json format.
     def to_dict(self):
-        average_rating = None
-        if self.ratings:
-            total_ratings = sum(self.ratings)
-            average_rating = total_ratings / len(self.ratings)
+        # average_rating = None
+        # if self.ratings:
+        #     total_ratings = sum(rating.bone_rating for rating in self.ratings)
+        #     average_rating = round(total_ratings / len(self.ratings), 1)
 
         return {
             "id": self.id,
@@ -84,8 +84,8 @@ class Spot(db.Model):
             "description": self.description,
             "website": self.website,
             "phone_number": self.phone_number,
-            "ratings": self.ratings,
-            "average_rating": average_rating,
+            # "ratings": self.ratings,
+            # "average_rating": average_rating,
             "created_at": self.created_at,
             "updated_at": self.updated_at,
         }
