@@ -11,7 +11,7 @@ const NewRatingModal = ({ spotId, currentUser, currentSpot }) => {
   const currentRatingNum = currentRating[0]?.bone_rating;
   const currentRatingId = currentRating[0]?.id;
 
-  console.log(`currentRatingNum`, currentRatingNum);
+  // console.log(`currentRatingNum`, currentRatingNum);
 
   const dispatch = useDispatch();
   const { closeModal } = useModal();
@@ -85,8 +85,8 @@ const NewRatingModal = ({ spotId, currentUser, currentSpot }) => {
     closeModal();
   };
 
-  console.log(`rating`, rating);
-  console.log(`active rating`, activeRating);
+  // console.log(`rating`, rating);
+  // console.log(`active rating`, activeRating);
 
   return (
     <div className="rating-form modalContainer">
