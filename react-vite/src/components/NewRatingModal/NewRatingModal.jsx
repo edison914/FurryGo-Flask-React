@@ -25,8 +25,13 @@ const NewRatingModal = ({ spotId, currentUser, currentSpot }) => {
   useEffect(() => {
     if (rating !== 0) {
       setActiveRating(rating);
+      setIsButtonDisabled(false);
     }
-  }, [rating]);
+
+    if (rating == 0) {
+      setIsButtonDisabled(true);
+    }
+  }, [rating, activeRating]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -39,6 +44,7 @@ const NewRatingModal = ({ spotId, currentUser, currentSpot }) => {
     formData.append("bone_rating", rating);
     //check to see if there is already a rating for the spot by currentUser
     //if no, create the rating by call the postRatingThunk
+
     if (!currentRatingNum) {
       // const res = await dispatch(postRatingThunk(formData, spotId));
       await fetch(`/api/spots/${spotId}/ratings`, {
