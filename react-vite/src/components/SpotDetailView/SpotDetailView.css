@@ -5,6 +5,7 @@
     justify-content: center;
     width:100%;
     height: 500px;
+
 }
 
 .spot-detail-picture-container img{
@@ -48,6 +49,7 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
     margin: 10px;
     border: 1px #a4a2a2 solid ;
     border-radius: 5px;
