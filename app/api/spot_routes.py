@@ -7,6 +7,7 @@ from app.api.aws_helpers import (
     get_unique_filename,
     remove_file_from_s3,
 )
+import os
 
 spot_routes = Blueprint("spots", __name__)
 
@@ -323,3 +324,10 @@ def post_a_rating(spot_id):
         return new_rating.to_dict()
 
     return form.erros, 401
+
+
+@spot_routes.route('/googleMapKey', methods=['GET'])
+def get_google_API_key ():
+    key = os.environ.get("GOOGLE_MAP_API")
+
+    return {"key": key}
