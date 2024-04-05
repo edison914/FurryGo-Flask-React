@@ -1,0 +1,28 @@
+.add-to-bookmark-container {
+    display: flex;
+    flex-direction: row;
+    border: 1px #5c5c5c solid;
+    align-items: center;
+    align-content: center;
+    justify-content: space-between;
+    width: 300px;
+    margin: 10px;
+    border-radius: 5px;
+}
+
+
+.add-to-bookmark-container label {
+    margin-top: 10px;
+    padding-left: 10px;
+}
+
+.add-to-bookmark-container button {
+    height: 50px;
+    width: 100px;
+}
+
+.add-bookmark-place-button-wrapper button {
+    width: 150px;
+    height: 50px;
+    margin-top: 10px;
+}

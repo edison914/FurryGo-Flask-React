@@ -52,7 +52,9 @@ const NewCommentModal = ({ spot }) => {
         <textarea
           className="post-comment-text-area-input"
           value={comment}
-          onChange={(e) => {setComment(e.target.value), validationErrors.comment_text = ''}}
+          onChange={(e) => {
+            setComment(e.target.value), (validationErrors.comment_text = "");
+          }}
           name="comment"
           placeholder="Write a comment"
           rows="5"
@@ -65,28 +67,33 @@ const NewCommentModal = ({ spot }) => {
           <input
             type="file"
             accept="image/*"
-            onChange={(e) => {setImage(e.target.files[0]), validationErrors.image_url = ''}}
+            onChange={(e) => {
+              setImage(e.target.files[0]), (validationErrors.image_url = "");
+            }}
           />
         </label>
         {validationErrors.image_url && hasSubmitted && (
           <p className="error">{validationErrors.image_url}</p>
         )}
-        <button
-          className="submit-button"
-          type="button"
-          onClick={handleSubmit}
-          disabled={isButtonDisabled}
-        >
-          Submit
-        </button>
 
-        <button
-          type="button"
-          className="cancel-button"
-          onClick={handleCancelSubmit}
-        >
-          Cancel
-        </button>
+        <div className="new-comment-button-wrapper">
+          <button
+            className="submit-button"
+            type="button"
+            onClick={handleSubmit}
+            disabled={isButtonDisabled}
+          >
+            Submit
+          </button>
+
+          <button
+            type="button"
+            className="cancel-button"
+            onClick={handleCancelSubmit}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );

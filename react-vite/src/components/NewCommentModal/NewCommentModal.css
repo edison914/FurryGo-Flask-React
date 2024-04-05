@@ -14,3 +14,15 @@
     outline: none;
     border-color: #387bcd;
 }
+
+.new-comment-button-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-self: center;
+}
+
+.new-comment-button-wrapper button {
+    width: 100px;
+    height: 40px;
+}

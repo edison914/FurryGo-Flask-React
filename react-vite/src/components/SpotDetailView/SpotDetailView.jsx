@@ -8,6 +8,9 @@ import NewCommentModal from "../NewCommentModal/NewCommentModal";
 import OpenModalButton from "../OpenModalButton/OpenModalButton";
 import LoginFormModal from "../LoginFormModal/LoginFormModal";
 import NotFoundPage from "../Navigation/NotFoundPage";
+import NewRatingModal from "../NewRatingModal/NewRatingModal";
+import { AddToBookmarkModal } from "../AddToBookmarkModal/AddToBookmarkModal";
+import { CurrentMapView } from "../CurrentMap/CurrentMap";
 
 const SpotDetailView = () => {
   const dispatch = useDispatch();
@@ -31,6 +34,11 @@ const SpotDetailView = () => {
         <div className="spot-detail-title-container">
           <h2>
             {currentSpot?.category} - {currentSpot?.name}
+          </h2>
+          <h2>
+            Bone Rating:{" "}
+            {currentSpot?.average_rating ? currentSpot.average_rating : 0}{" "}
+            <i className="fa-solid fa-bone"></i>
           </h2>
         </div>
 
@@ -83,17 +91,53 @@ const SpotDetailView = () => {
                 buttonText="Add Your Comment"
               />
             )}
+
+            {currentUser ? (
+              currentUser?.id !== currentSpot?.user_id && (
+                <div className="new-comment-button-container">
+                  <OpenModalButton
+                    modalComponent={
+                      <NewRatingModal
+                        spotId={spotId}
+                        currentUser={currentUser}
+                        currentSpot={currentSpot}
+                      />
+                    }
+                    buttonText="Rate the place"
+                  />
+                </div>
+              )
+            ) : (
+              <OpenModalButton
+                modalComponent={<LoginFormModal spot={currentSpot} />}
+                buttonText="Rate the place"
+              />
+            )}
+            {currentUser ? (
+              <div className="new-comment-button-container">
+                <OpenModalButton
+                  modalComponent={<AddToBookmarkModal spotId={spotId} />}
+                  buttonText="Bookmark the place"
+                />
+              </div>
+            ) : (
+              <OpenModalButton
+                modalComponent={<LoginFormModal spot={currentSpot} />}
+                buttonText="Bookmark the place"
+              />
+            )}
           </div>
         </div>
 
         {/* <div>Average Bone Rating: {currentSpot?.average_rating ? currentSpot.average_rating `Bones` : "No Rating Yet"}</div> */}
 
         <div className="spot-detail-bottom-half-container">
-          {/* <div className="commentsContainer"> */}
-          <CommentsBySpot />
-          {/* </div> */}
-
-          <div className="mapContainer"></div>
+          <div className="comments-container">
+            <CommentsBySpot />
+          </div>
+          {currentSpot && <div className="map-container">
+            <CurrentMapView spot={currentSpot} />
+          </div>}
         </div>
       </div>
     </div>

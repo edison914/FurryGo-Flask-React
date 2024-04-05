@@ -48,14 +48,13 @@ const EditACommentModal = ({ spot, commentId }) => {
   return (
     <div className="comment-form modalContainer">
       <h2>Edit your comment</h2>
-      <form
-        onSubmit={handleSubmit}
-        encType="multipart/form-data"
-      >
+      <form onSubmit={handleSubmit} encType="multipart/form-data">
         <textarea
           className="post-comment-text-area-input"
           value={comment}
-          onChange={(e) => {setComment(e.target.value), validationErrors.comment_text = ''}}
+          onChange={(e) => {
+            setComment(e.target.value), (validationErrors.comment_text = "");
+          }}
           name="comment"
           placeholder="Write a comment"
           rows="5"
@@ -68,28 +67,32 @@ const EditACommentModal = ({ spot, commentId }) => {
           <input
             type="file"
             accept="image/*"
-            onChange={(e) => {setImage(e.target.files[0]), validationErrors.image_url = ''}}
+            onChange={(e) => {
+              setImage(e.target.files[0]), (validationErrors.image_url = "");
+            }}
           />
         </label>
         {validationErrors.image_url && hasSubmitted && (
           <p className="error">{validationErrors.image_url}</p>
         )}
-        <button
-          className="submit-button"
-          type="button"
-          onClick={handleSubmit}
-          disabled={isButtonDisabled}
-        >
-          Submit
-        </button>
+        <div className="edit-comment-button-wrapper">
+          <button
+            className="submit-button"
+            type="button"
+            onClick={handleSubmit}
+            disabled={isButtonDisabled}
+          >
+            Submit
+          </button>
 
-        <button
-          type="button"
-          className="cancel-button"
-          onClick={handleCancelSubmit}
-        >
-          Cancel
-        </button>
+          <button
+            type="button"
+            className="cancel-button"
+            onClick={handleCancelSubmit}
+          >
+            Cancel
+          </button>
+        </div>
       </form>
     </div>
   );

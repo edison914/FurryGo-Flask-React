@@ -9,3 +9,13 @@
    align-items: center;
 }
 
+.login-button-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-self: center;
+}
+
+.login-button-wrapper button {
+    width: 100px;
+}

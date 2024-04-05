@@ -26,8 +26,17 @@ def no_email(form, field):
 
 
 class SignUpForm(FlaskForm):
+    def no_white_space(FlaskForm, field):
+        if field.data and field.data.startswith(" "):
+            raise ValidationError(" Comment should not start with whitespace.")
+        if field.data and field.data.endswith(" "):
+            raise ValidationError(" Comment should not end with whitespace.")
+
     nickname = StringField(
-        "nickname", validators=[DataRequired(), nickname_exists, no_email]
+        "nickname",
+        validators=[DataRequired(), nickname_exists, no_email, no_white_space],
     )
-    email = StringField("email", validators=[DataRequired(), user_exists, Email()])
+    email = StringField(
+        "email", validators=[DataRequired(), user_exists, Email(), no_white_space]
+    )
     password = StringField("password", validators=[DataRequired()])

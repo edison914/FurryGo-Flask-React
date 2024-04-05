@@ -1,0 +1,12 @@
+
+
+.map-div {
+    height: 600px;
+    margin: 10px;
+
+}
+
+
+.map-div div {
+    border-radius: 5px;
+}

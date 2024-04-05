@@ -39,7 +39,7 @@ const DeleteASpot = ({spotId}) => {
             <p>
                 Are you sure you want to remove this place?
             </p>
-
+            <div className='delete-spot-button-wrapper'>
             <button
                 className='delete-button'
                 type='button'
@@ -55,6 +55,8 @@ const DeleteASpot = ({spotId}) => {
             >
                 No
             </button>
+            </div>
+
 
         </div>
     )

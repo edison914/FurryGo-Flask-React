@@ -1,0 +1,35 @@
+.bookmark-place-view-container {
+    display: flex;
+    flex-direction: row;
+    text-align: center;
+    align-items: center;
+    justify-content: space-between;
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+}
+
+
+
+.bookmark-place-view-container img {
+    width: 150px;
+    height: 100px;
+    border-radius: 5px;
+}
+
+.bookmark-place-text-rating {
+    text-decoration: none;
+    color: #5c5c5c;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.bookmark-place-view-container button {
+    height: 100px;
+}
+
+
+.bookmark-place-view-container a{
+    height:100px;
+}
