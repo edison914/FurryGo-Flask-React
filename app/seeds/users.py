@@ -49,7 +49,7 @@ def seed_users():
     )
     eddie = User(
         nickname="Bolt",
-        email="eddie@aa.io",
+        email="eddie2@aa.io",
         password="password",
         # profile_url="https://images.pexels.com/photos/14440674/pexels-photo-14440674.jpeg?auto=compress&cs=tinysrgb&w=600",
     )
