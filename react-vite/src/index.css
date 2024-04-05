@@ -78,14 +78,12 @@ body {
 
 .modalContainer button {
     display: block;
-    width: 100%;
     padding: 10px;
     background-color: #0A62D0;
     color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin-top: 5px
 }
 
 .modalContainer button:hover {
@@ -102,7 +100,6 @@ body {
 .submit-button {
     margin-bottom: 15px;
 }
-
 
 .label-upload > input {
     height: 30px;
@@ -219,3 +216,4 @@ footer > div > a {
 .edit-comment-button button:hover {
     background-color: #387bcd;;
 }
+

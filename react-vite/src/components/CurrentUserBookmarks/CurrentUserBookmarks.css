@@ -1,0 +1,83 @@
+.bookmark-outer-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 70px;
+    min-height: 90vh;
+}
+.bookmark-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    width: 1000px;
+}
+
+.bookmark-left-container {
+    width: 30%;
+}
+.bookmark-right-container {
+    width: 70%;
+    margin: 10px;
+    padding: 10px;
+    border: 1px solid #5c5c5c;
+    border-radius: 5px;
+}
+.bookmark-view-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 10px;
+    text-align: center;
+    padding: 10px;
+    border: 1px solid #5c5c5c;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all .3s ease-in;
+}
+
+.bookmark-view-container h3 {
+    margin-bottom: 15px;
+}
+
+.bookmark-view-container:hover {
+    transform: scale(1.1);
+}
+
+.edit-bookmark-button-wrapper {
+    display: flex;
+    flex-direction: column;
+}
+
+.edit-bookmark-button-wrapper button{
+    margin: 5px 0;
+}
+
+.bookmark-name {
+    margin: 0px;
+}
+
+.new-bookmark-button {
+    margin: 10px;
+}
+
+
+.bookmark-container button, .new-bookmark-button button {
+    display: block;
+    padding: 10px;
+    background-color: #0A62D0;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 130px;
+}
+
+.bookmark-container button:hover, .new-bookmark-button button:hover{
+    background-color: #387bcd;;
+}
+
+
+.new-bookmark-wrapper {
+    display: flex;
+}
+

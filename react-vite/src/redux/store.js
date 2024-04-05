@@ -8,11 +8,13 @@ import thunk from "redux-thunk";
 import sessionReducer from "./session";
 import spotReducers from "./spots";
 import commentsReducer from "./comments";
+import bookmarksReducer from "./bookmarks";
 
 const rootReducer = combineReducers({
   session: sessionReducer,
   spots: spotReducers,
-  comments: commentsReducer
+  comments: commentsReducer,
+  bookmarks: bookmarksReducer
 });
 
 let enhancer;

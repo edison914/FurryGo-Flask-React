@@ -1,12 +1,12 @@
-import { createBrowserRouter } from 'react-router-dom';
-import Layout from './Layout';
-import SplashPage from '../components/SplashPage/SplashPage';
-import SpotDetailView from '../components/SpotDetailView/SpotDetailView';
-import NewSpotForm from '../components/NewSpotForm/NewSpotForm';
-import CurrentUserSpots from '../components/CurrentUserSpots/CurrentUserSpots';
-import EditSpotForm from '../components/EditSpotForm/EditSpotForm';
-import NotFoundPage from '../components/Navigation/NotFoundPage';
-
+import { createBrowserRouter } from "react-router-dom";
+import Layout from "./Layout";
+import SplashPage from "../components/SplashPage/SplashPage";
+import SpotDetailView from "../components/SpotDetailView/SpotDetailView";
+import NewSpotForm from "../components/NewSpotForm/NewSpotForm";
+import CurrentUserSpots from "../components/CurrentUserSpots/CurrentUserSpots";
+import EditSpotForm from "../components/EditSpotForm/EditSpotForm";
+import NotFoundPage from "../components/Navigation/NotFoundPage";
+import { BookmarksPage } from "../components/CurrentUserBookmarks/CurrentUserBookmarks";
 export const router = createBrowserRouter([
   {
     element: <Layout />,
@@ -32,8 +32,12 @@ export const router = createBrowserRouter([
         element: <EditSpotForm />,
       },
       {
+        path: "/bookmarks",
+        element: <BookmarksPage />,
+      },
+      {
         path: "*",
-        element: <NotFoundPage />
+        element: <NotFoundPage />,
       },
     ],
   },
