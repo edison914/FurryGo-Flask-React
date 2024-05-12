@@ -12,7 +12,7 @@ FurryGo is an online community hub where pet lovers can discover and review anim
 ![Screenshot 2024-04-30 at 9 52 33 PM](https://github.com/edison914/FurryGo/assets/101605994/127474c0-c088-4e40-95fd-f95c00cc1714)
 
 
-*CURD of Places*
+*CRUD of Places*
 * Users are able to view all places regardless of their log-in status.
 * Users are able to see the details of a specific place regardless of their log-in status.
 * Users are able to create a new place only when they are logged in.
@@ -22,7 +22,7 @@ FurryGo is an online community hub where pet lovers can discover and review anim
 ![Screenshot 2024-04-30 at 10 03 24 PM](https://github.com/edison914/FurryGo/assets/101605994/7c2af651-771f-4a4c-85da-1cb9691a784c)
 
 
-*CURD of Reviews*
+*CRUD of Reviews*
 * Users are able to view all reviews on the detail place page regardless of their log-in status.
 * Users who are the creators of the current detail place aren't allowed to create comments.
 * Users are able to create new reviews, with or without review pictures, only when they are logged in.
@@ -32,7 +32,7 @@ FurryGo is an online community hub where pet lovers can discover and review anim
 ![Screenshot 2024-04-30 at 10 10 08 PM](https://github.com/edison914/FurryGo/assets/101605994/846240a5-2a35-4423-b3c2-dd5f4224bb7e)
 
 
-*CURD of Ratings*
+*CRUD of Ratings*
 * Users are able to view average bone rating of a place on both detail place page or home page regardless of their log-in status.
 * Users are able to create new bone rating only when they are logged in.
 * Users are able to edit/update bone rating on detail place page only when they are logged in.
@@ -40,7 +40,7 @@ FurryGo is an online community hub where pet lovers can discover and review anim
 ![Screenshot 2024-04-30 at 10 14 55 PM](https://github.com/edison914/FurryGo/assets/101605994/20f05b50-ccf1-4fba-bd4e-8789d931eb69)
 
 
-*CURD of bookmarks*
+*CRUD of bookmarks*
 * Users are able to view their bookmarks only when they are logged in.
 * Users are able to create new bookmarks only when they are logged in.
 * Users are able to delete a bookmark that they previously created.
