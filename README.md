@@ -47,12 +47,14 @@ FurryGo is an online community hub where pet lovers can discover and review anim
 * Users are able to edit the name of a bookmark that they previously created.
 * Users are able to add a place to a bookmark on the detail place page only when they are logged in.
 * Users are able to delete a place from a bookmark on the bookmarks page on when they are logged in.
+
 ![Screenshot 2024-04-30 at 10 20 14 PM](https://github.com/edison914/FurryGo/assets/101605994/549f5a68-9e83-41b4-9247-7bc7ee22a586)
 ![Screenshot 2024-04-30 at 10 19 29 PM](https://github.com/edison914/FurryGo/assets/101605994/a691372d-c807-4e81-90b5-c9ea946aca03)
 
 
 *Use of GoogleMap API*
 * The React component for the Google Maps API is utilized on the detail place page, utilizing the longitude and latitude coordinates initially provided by the place creator upon creation. Regardless of their log-in status, any user can view the map, zoom in and out, and switch between satellite or map view.
+
 ![Screenshot 2024-04-30 at 10 34 39 PM](https://github.com/edison914/FurryGo/assets/101605994/f11e2eec-205c-4e87-bbff-a0d2090ad441)
 ![Screenshot 2024-04-30 at 10 30 47 PM](https://github.com/edison914/FurryGo/assets/101605994/2553f2db-ea1c-4cb8-b087-5ddeeaa52321)
 
